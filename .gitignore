@@ -1,16 +1,22 @@
+# ==============================
+# Desiglo - .gitignore
+# ==============================
+
+
 # Dependencies
 node_modules/
 
-# Production build
+
+# Production builds
 dist/
 dist-ssr/
 
+
 # Environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
+
 
 # Logs
 logs/
@@ -20,24 +26,28 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+
+# TypeScript generated files
+*.tsbuildinfo
+
+
+# Vite generated files
+.vite/
+vite.config.js
+vite.config.d.ts
+
+
+# Cache / temporary files
+.cache/
+*.tmp
+*.temp
+
+
 # Editor files
 .vscode/
 .idea/
 
+
 # Operating system files
 .DS_Store
 Thumbs.db
-
-# TypeScript
-*.tsbuildinfo
-
-# Vite
-.vite/
-
-# Temporary files
-*.tmp
-*.temp
-.cache/
-
-# Local files
-*.local

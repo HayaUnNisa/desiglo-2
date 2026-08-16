@@ -10,7 +10,7 @@ export type PricingPlan = {
 export const pricingPlans: PricingPlan[] = [
   {
     name: "Basic",
-    range: "$200–$400",
+    range: "$1,000–$1,500",
     description:
       "A simple, professional website for individuals, startups, and small businesses that need a clean online presence.",
     features: [
@@ -26,7 +26,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: "Standard",
-    range: "$500–$900",
+    range: "$1,500–$2,000",
     description:
       "A more complete business website with stronger structure, more pages, and greater flexibility.",
     features: [
@@ -45,7 +45,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: "Premium",
-    range: "$1,000–$2,000",
+    range: "$2,000–$3,000",
     description:
       "For businesses that need a larger, more customized website with advanced design and functionality.",
     features: [

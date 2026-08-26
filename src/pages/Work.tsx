@@ -1,0 +1,281 @@
+import { ArrowRight, Monitor, Smartphone, Tablet } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import Container from "../components/common/Container";
+import Button from "../components/common/Button";
+
+const projects = [
+  {
+    title: "Business Website Template",
+    category: "Business",
+    services: "Design & Development",
+    description:
+      "A professional multi-page website concept for businesses and service providers.",
+    status: "Template coming later",
+  },
+  {
+    title: "E-commerce Template",
+    category: "E-commerce",
+    services: "UI Design & Development",
+    description:
+      "A modern online store concept focused on product discovery, responsive shopping, and clear navigation.",
+    status: "Template coming later",
+  },
+  {
+    title: "Landing Page Template",
+    category: "Landing Page",
+    services: "Design & Development",
+    description:
+      "A focused landing page concept for campaigns, services, launches, and lead generation.",
+    status: "Template coming later",
+  },
+  {
+    title: "Website Redesign Template",
+    category: "Redesign",
+    services: "Website Redesign",
+    description:
+      "A before-and-after redesign concept focused on improving clarity, responsiveness, and visual quality.",
+    status: "Template coming later",
+  },
+];
+
+export default function Work() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-white/[0.07] py-20 sm:py-24 lg:py-28">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[10%] top-0 h-72 w-72 rounded-full bg-[#168CFF]/8 blur-[120px]" />
+          <div className="absolute right-[10%] top-24 h-64 w-64 rounded-full bg-[#39BDF8]/5 blur-[120px]" />
+        </div>
+
+        <Container>
+          <div className="relative max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+              Work
+            </p>
+
+            <h1 className="mt-4 text-5xl font-bold leading-[1.05] tracking-[-0.04em] text-white sm:text-6xl">
+              Websites designed with clarity, usability, and performance in
+              mind.
+            </h1>
+
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#C9CED3]/75">
+              This portfolio area is prepared for Desiglo's website templates
+              and future client projects. Each project will eventually include
+              detailed responsive previews and a complete case study.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Intro */}
+      <section className="py-20 sm:py-24">
+        <Container>
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+                Selected Work
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+                Project templates will live here.
+              </h2>
+
+              <p className="mt-5 text-lg leading-8 text-[#C9CED3]/70">
+                The structure is already in place. When you add your templates,
+                these placeholders can be replaced with actual website
+                screenshots and case-study links.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {["All", "Business", "E-commerce", "Landing Pages", "Redesign"].map(
+                (filter, index) => (
+                  <span
+                    key={filter}
+                    className={`rounded-full border px-4 py-2 text-xs font-medium ${
+                      index === 0
+                        ? "border-[#168CFF]/40 bg-[#168CFF]/10 text-[#9FDCFF]"
+                        : "border-white/[0.08] bg-white/[0.025] text-[#C9CED3]/65"
+                    }`}
+                  >
+                    {filter}
+                  </span>
+                ),
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Projects */}
+      <section className="pb-24 sm:pb-28">
+        <Container>
+          <div className="grid gap-8 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <article key={project.title} className="group">
+                {/* Preview */}
+                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#081C24]">
+                  <div className="absolute right-[-80px] top-[-80px] h-60 w-60 rounded-full bg-[#168CFF]/10 blur-[80px]" />
+
+                  <div className="absolute inset-5 sm:inset-7">
+                    <div className="h-full overflow-hidden rounded-xl border border-white/[0.08] bg-[#0A2029] shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+                      {/* Browser top */}
+                      <div className="flex h-10 items-center gap-2 border-b border-white/[0.07] px-4">
+                        <span className="h-2 w-2 rounded-full bg-white/15" />
+                        <span className="h-2 w-2 rounded-full bg-white/15" />
+                        <span className="h-2 w-2 rounded-full bg-white/15" />
+
+                        <div className="ml-3 h-4 flex-1 rounded bg-white/[0.04]" />
+                      </div>
+
+                      {/* Placeholder content */}
+                      <div className="grid h-[calc(100%-40px)] place-items-center p-6">
+                        <div className="w-full max-w-sm text-center">
+                          <div className="mx-auto grid h-14 w-14 place-items-center rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/8">
+                            <Monitor
+                              size={22}
+                              className="text-[#39BDF8]"
+                            />
+                          </div>
+
+                          <p className="mt-5 font-mono text-xs text-[#39BDF8]/60">
+                            PROJECT 0{index + 1}
+                          </p>
+
+                          <h3 className="mt-2 text-lg font-semibold text-white">
+                            Template Preview
+                          </h3>
+
+                          <p className="mt-2 text-xs leading-6 text-[#C9CED3]/45">
+                            Replace this area with your website screenshot when
+                            the template is ready.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Device indicators */}
+                  <div className="absolute bottom-3 right-4 flex items-center gap-2 rounded-lg border border-white/[0.07] bg-[#061820]/90 px-3 py-2 text-[#C9CED3]/50 backdrop-blur">
+                    <Monitor size={13} />
+                    <Tablet size={13} />
+                    <Smartphone size={13} />
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="mt-6">
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                    <span className="text-[#39BDF8]">
+                      {project.category}
+                    </span>
+
+                    <span className="text-white/20">•</span>
+
+                    <span className="text-[#C9CED3]/55">
+                      {project.services}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white">
+                    {project.title}
+                  </h3>
+
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-[#C9CED3]/65">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-5 inline-flex items-center rounded-full border border-white/[0.07] bg-white/[0.025] px-3 py-1.5 text-xs text-[#C9CED3]/45">
+                    {project.status}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Future case studies */}
+      <section className="border-y border-white/[0.06] bg-[#081C24] py-24 sm:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+                Case Studies
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+                More than a screenshot.
+              </h2>
+            </div>
+
+            <div>
+              <p className="text-lg leading-8 text-[#C9CED3]/70">
+                When projects are added, each case study can explain the
+                challenge, goals, approach, design decisions, development,
+                responsive experience, technologies, and final result.
+              </p>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  "Project overview",
+                  "Challenge & goals",
+                  "Design decisions",
+                  "Development approach",
+                  "Responsive previews",
+                  "Technologies used",
+                  "Project gallery",
+                  "Next project navigation",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-xl border border-white/[0.07] bg-[#0A2029]/60 px-4 py-4 text-sm text-[#C9CED3]/70"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 sm:py-28">
+        <Container>
+          <div className="relative overflow-hidden rounded-3xl border border-[#168CFF]/20 bg-[#0A2029] px-6 py-16 sm:px-10 lg:px-14">
+            <div className="absolute right-[-100px] top-[-130px] h-80 w-80 rounded-full bg-[#168CFF]/10 blur-[100px]" />
+
+            <div className="relative max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+                Start a Project
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.04em] text-white sm:text-5xl">
+                Want your website to be featured here next?
+              </h2>
+
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#C9CED3]/70">
+                Tell Desiglo about your project and what you want your website
+                to achieve.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button to="/start-a-project">
+                  Start Your Project
+                  <ArrowRight size={17} />
+                </Button>
+
+                <Button to="/pricing" variant="secondary">
+                  View Pricing
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </>
+  );
+}

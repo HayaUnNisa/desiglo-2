@@ -1,29 +1,39 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import Container from "../common/Container";
 
+import amberOakCafeHero from "../../assets/work/amber-oak-cafe/hero.png";
+import halfKiloCoffeeHero from "../../assets/work/half-kilo-coffee/hero.png";
+import brewBeanHero from "../../assets/work/brew-bean/hero.png";
+
 const projects = [
   {
-    title: "Northline Studio",
-    category: "Business Website",
+    title: "Amber Oak Café",
+    category: "Café & Restaurant",
     service: "Design & Development",
     description:
-      "A clean professional website concept for a modern architecture and interior design studio.",
+      "A warm, modern café website designed around atmosphere, menu discovery, reservations, and the in-store experience.",
+    image: amberOakCafeHero,
+    previewUrl: "https://amber-oak-cafe.desiglo.com",
   },
   {
-    title: "Nova Commerce",
-    category: "E-commerce",
-    service: "UI Design & Development",
+    title: "Half Kilo Coffee",
+    category: "Café & Restaurant",
+    service: "Design & Development",
     description:
-      "A focused online store concept designed around clear product discovery and a simple shopping experience.",
+      "A refined café website with a calm visual identity, menu discovery, location details, and a responsive customer experience.",
+    image: halfKiloCoffeeHero,
+    previewUrl: "https://half-kilo-coffee.desiglo.com",
   },
   {
-    title: "Vertex Consulting",
-    category: "Professional Services",
-    service: "Website Redesign",
+    title: "Brew & Bean",
+    category: "Café & Restaurant",
+    service: "Design & Development",
     description:
-      "A modern redesign concept focused on credibility, service clarity, and stronger inquiry paths.",
+      "A bold, modern coffee shop website with a distinctive visual identity, menu discovery, and a responsive customer experience.",
+    image: brewBeanHero,
+    previewUrl: "https://brew-bean.desiglo.com",
   },
 ];
 
@@ -38,7 +48,7 @@ export default function FeaturedWork() {
             </p>
 
             <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
-              Selected work.
+              Selected websites.
             </h2>
           </div>
 
@@ -56,36 +66,38 @@ export default function FeaturedWork() {
         </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <article key={project.title} className="group">
-              <div className="relative aspect-[16/11] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#061820]">
-                <div
-                  className="absolute inset-0 opacity-50"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 70% 25%, rgba(22,140,255,.22), transparent 35%)",
-                  }}
+              {/* Website Preview */}
+              <a
+                href={project.previewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block aspect-[16/11] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#061820]"
+                aria-label={`Open ${project.title} live preview`}
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.title} website preview`}
+                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.03]"
                 />
 
-                <div className="absolute inset-6 rounded-xl border border-white/[0.08] bg-[#0A2029] p-4 shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
-                  <div className="flex h-6 items-center gap-1.5 border-b border-white/[0.06]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
-                  </div>
-
-                  <div className="grid h-[calc(100%-24px)] place-items-center">
-                    <span className="text-6xl font-bold tracking-[-0.06em] text-white/[0.04]">
-                      0{index + 1}
-                    </span>
+                {/* Hover overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-[#061820]/0 transition duration-300 group-hover:bg-[#061820]/55">
+                  <div className="flex translate-y-3 items-center gap-2 rounded-xl border border-white/15 bg-[#061820]/90 px-5 py-3 text-sm font-semibold text-white opacity-0 shadow-xl backdrop-blur-md transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    Live Preview
+                    <ExternalLink size={15} />
                   </div>
                 </div>
-              </div>
+              </a>
 
+              {/* Project Info */}
               <div className="mt-6">
                 <div className="flex flex-wrap gap-2 text-xs font-medium text-[#39BDF8]">
                   <span>{project.category}</span>
+
                   <span className="text-white/20">•</span>
+
                   <span>{project.service}</span>
                 </div>
 
@@ -97,23 +109,33 @@ export default function FeaturedWork() {
                   {project.description}
                 </p>
 
-                <Link
-                  to="/work"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white"
+                <a
+                  href={project.previewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-[#39BDF8]"
                 >
-                  View Case Study
+                  Live Preview
 
-                  <ArrowRight size={15} />
-                </Link>
+                  <ExternalLink
+                    size={15}
+                    className="transition-transform group-hover/link:translate-x-0.5"
+                  />
+                </a>
               </div>
             </article>
           ))}
         </div>
 
-        <p className="mt-10 text-xs leading-5 text-[#C9CED3]/45">
-          Demo portfolio concepts shown until actual Desiglo project work is
-          supplied.
-        </p>
+        <div className="mt-12 flex justify-center sm:hidden">
+          <Link
+            to="/work"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white"
+          >
+            View all work
+            <ArrowRight size={15} />
+          </Link>
+        </div>
       </Container>
     </section>
   );

@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import Container from "../common/Container";
@@ -49,29 +48,6 @@ const footerLinks = {
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
     { label: "Start a Project", href: "/start-a-project" },
-  ],
-
-  legal: [
-    {
-      label: "Privacy Policy",
-      href: "/privacy-policy",
-    },
-    {
-      label: "Terms & Conditions",
-      href: "/terms",
-    },
-    {
-      label: "Cookie Policy",
-      href: "/cookie-policy",
-    },
-    {
-      label: "Accessibility",
-      href: "/accessibility",
-    },
-    {
-      label: "Sitemap",
-      href: "/sitemap",
-    },
   ],
 };
 
@@ -188,70 +164,63 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/[0.07] bg-[#04141B]">
-     
-
       {/* =====================================================
           MAIN FOOTER
       ====================================================== */}
 
-      <div className="border-t border-white/[0.06]">
-        <Container>
-          <div className="grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.5fr_0.7fr_1fr_0.8fr_1fr] lg:gap-10">
-            {/* Brand */}
-            <div>
-              <Logo />
+      <Container>
+        <div className="grid gap-12 py-16 sm:py-20 md:grid-cols-2 lg:grid-cols-[1.6fr_0.8fr_1fr_0.8fr] lg:gap-12">
+          {/* Brand */}
+          <div>
+            <Logo />
 
-              <p className="mt-5 max-w-sm text-sm leading-7 text-[#C9CED3]/60">
-                Modern web design and development for businesses that want a
-                professional, responsive, and effective online presence.
-              </p>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-[#C9CED3]/60">
+              Modern web design and development for businesses that want a
+              professional, responsive, and effective online presence.
+            </p>
 
-              <p className="mt-4 max-w-sm text-xs leading-6 text-[#C9CED3]/40">
-                Design, development, landing pages, e-commerce, redesigns, and
-                ongoing website support.
-              </p>
+            <p className="mt-4 max-w-sm text-xs leading-6 text-[#C9CED3]/40">
+              Design, development, landing pages, e-commerce, redesigns, and
+              ongoing website support.
+            </p>
 
-              {/* Social Links */}
-              <div className="mt-7 flex flex-wrap items-center gap-2">
-                {socialLinks.map(({ label, href, icon: Icon }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Desiglo on ${label}`}
-                    title={label}
-                    className="grid h-10 w-10 place-items-center rounded-lg border border-white/[0.08] bg-white/[0.025] text-[#C9CED3]/65 transition duration-200 hover:-translate-y-0.5 hover:border-[#168CFF]/35 hover:bg-[#168CFF]/10 hover:text-[#39BDF8]"
-                  >
-                    <Icon size={17} />
-                  </a>
-                ))}
-              </div>
+            {/* Social Links */}
+            <div className="mt-7 flex flex-wrap items-center gap-2">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Desiglo on ${label}`}
+                  title={label}
+                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/[0.08] bg-white/[0.025] text-[#C9CED3]/65 transition-all duration-200 hover:-translate-y-0.5 hover:!border-[#168CFF] hover:!bg-[#168CFF]/15 hover:!text-[#168CFF]"
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
             </div>
-
-            <FooterColumn
-              title="Navigation"
-              links={footerLinks.navigation}
-            />
-
-            <FooterColumn
-              title="Services"
-              links={footerLinks.services}
-            />
-
-            <FooterColumn
-              title="Company"
-              links={footerLinks.company}
-            />
-
-            <FooterColumn
-              title="Legal"
-              links={footerLinks.legal}
-              showCookieSettings
-            />
           </div>
-        </Container>
-      </div>
+
+          {/* Navigation */}
+          <FooterColumn
+            title="Navigation"
+            links={footerLinks.navigation}
+          />
+
+          {/* Services */}
+          <FooterColumn
+            title="Services"
+            links={footerLinks.services}
+          />
+
+          {/* Company */}
+          <FooterColumn
+            title="Company"
+            links={footerLinks.company}
+          />
+        </div>
+      </Container>
 
       {/* =====================================================
           BOTTOM BAR
@@ -260,35 +229,33 @@ export default function Footer() {
       <div className="border-t border-white/[0.06]">
         <Container>
           <div className="flex flex-col gap-4 py-6 text-xs text-[#C9CED3]/45 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              © {currentYear} Desiglo. All rights reserved.
-            </p>
+            <p>© {currentYear} Desiglo. All rights reserved.</p>
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
               <Link
                 to="/privacy-policy"
-                className="transition-colors hover:text-white"
+                className="transition-colors duration-200 hover:!text-[#168CFF]"
               >
                 Privacy
               </Link>
 
               <Link
                 to="/terms"
-                className="transition-colors hover:text-white"
+                className="transition-colors duration-200 hover:!text-[#168CFF]"
               >
                 Terms
               </Link>
 
               <Link
                 to="/cookie-policy"
-                className="transition-colors hover:text-white"
+                className="transition-colors duration-200 hover:!text-[#168CFF]"
               >
                 Cookies
               </Link>
 
               <Link
                 to="/accessibility"
-                className="transition-colors hover:text-white"
+                className="transition-colors duration-200 hover:!text-[#168CFF]"
               >
                 Accessibility
               </Link>
@@ -296,14 +263,14 @@ export default function Footer() {
               <button
                 type="button"
                 onClick={openCookieSettings}
-                className="transition-colors hover:text-white"
+                className="cursor-pointer transition-colors duration-200 hover:!text-[#168CFF]"
               >
                 Cookie Settings
               </button>
 
               <Link
                 to="/sitemap"
-                className="transition-colors hover:text-white"
+                className="transition-colors duration-200 hover:!text-[#168CFF]"
               >
                 Sitemap
               </Link>
@@ -335,43 +302,29 @@ type FooterColumnProps = {
     label: string;
     href: string;
   }[];
-  showCookieSettings?: boolean;
 };
 
 function FooterColumn({
   title,
   links,
-  showCookieSettings = false,
 }: FooterColumnProps) {
   return (
     <div>
-     <h3 className="text-sm font-semibold text-[#168CFF]">
-          {title}
-        </h3>
-    
+      <h3 className="text-sm font-semibold text-[#168CFF]">
+        {title}
+      </h3>
+
       <ul className="mt-5 space-y-3.5">
         {links.map((link) => (
           <li key={`${title}-${link.label}`}>
             <Link
               to={link.href}
-              className="text-sm text-[#C9CED3]/55 transition-colors duration-200 hover:text-[#39BDF8]"
+              className="text-sm text-[#C9CED3]/55 transition-colors duration-200 hover:!text-[#168CFF]"
             >
               {link.label}
             </Link>
           </li>
         ))}
-
-        {showCookieSettings && (
-          <li>
-            <button
-              type="button"
-              onClick={openCookieSettings}
-              className="text-left text-sm text-[#C9CED3]/55 transition-colors duration-200 hover:text-[#39BDF8]"
-            >
-              Cookie Settings
-            </button>
-          </li>
-        )}
       </ul>
     </div>
   );

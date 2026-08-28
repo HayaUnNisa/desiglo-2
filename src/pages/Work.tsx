@@ -12,6 +12,7 @@ import Button from "../components/common/Button";
 import amberOakCafeHero from "../assets/work/amber-oak-cafe/hero.png";
 import halfKiloCoffeeHero from "../assets/work/half-kilo-coffee/hero.png";
 import brewBeanHero from "../assets/work/brew-bean/hero.png";
+import oliveEmberHero from "../assets/work/olive-ember/hero.png";
 
 type Project = {
   title: string;
@@ -55,13 +56,15 @@ const projects: Project[] = [
   image: brewBeanHero,
 },
   {
-    title: "Website Redesign Template",
-    category: "Redesign",
-    services: "Website Redesign",
-    description:
-      "A before-and-after redesign concept focused on improving clarity, responsiveness, and visual quality.",
-    status: "Template coming later",
-  },
+  title: "Olive Ember",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A warm, earthy café website with a refined visual identity, menu discovery, and a responsive customer experience.",
+  status: "Live Template",
+  previewUrl: "https://olive-ember.desiglo.com",
+  image: oliveEmberHero,
+},
 ];
 
 export default function Work() {

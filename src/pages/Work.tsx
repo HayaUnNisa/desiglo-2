@@ -13,6 +13,16 @@ import amberOakCafeHero from "../assets/work/amber-oak-cafe/hero.png";
 import halfKiloCoffeeHero from "../assets/work/half-kilo-coffee/hero.png";
 import brewBeanHero from "../assets/work/brew-bean/hero.png";
 import oliveEmberHero from "../assets/work/olive-ember/hero.png";
+import vantageSneakersHero from "../assets/work/vantage-sneakers/hero.png";
+import dentalClinicHero from "../assets/work/dental-clinic/hero.png";
+import meridianDentalHero from "../assets/work/meridian-dental-clinic/hero.png";
+import sanamCafeHero from "../assets/work/sanam-cafe/hero.png";
+import ollcaCafeHero from "../assets/work/ollca-cafe/hero.png";
+import theSpaceCafeHero from "../assets/work/the-space-cafe/hero.png";
+import moodNajdiCafeHero from "../assets/work/mood-najdi-cafe/hero.png";
+import nativeCreativeHero from "../assets/work/native-creative/hero.png";
+import wemCoffeeHero from "../assets/work/wem-coffee/hero.png";
+import medadCafeHero from "../assets/work/medad-cafe/hero.png";
 
 type Project = {
   title: string;
@@ -64,6 +74,106 @@ const projects: Project[] = [
   status: "Live Template",
   previewUrl: "https://olive-ember.desiglo.com",
   image: oliveEmberHero,
+},
+{
+  title: "Vantage Sneakers",
+  category: "Fashion & E-commerce",
+  services: "Design & Development",
+  description:
+    "A bold modern sneaker website focused on product presentation, brand identity, and a premium shopping experience.",
+  status: "Live Template",
+  previewUrl: "https://vantage-sneakers.desiglo.com",
+  image: vantageSneakersHero,
+},
+{
+  title: "Dental Clinic",
+  category: "Healthcare",
+  services: "Design & Development",
+  description:
+    "A clean modern dental clinic website designed around treatments, patient trust, and appointment conversion.",
+  status: "Live Template",
+  previewUrl: "https://dental-clinic.desiglo.com",
+  image: dentalClinicHero,
+},
+{
+  title: "Meridian Dental Clinic",
+  category: "Healthcare",
+  services: "Design & Development",
+  description:
+    "A premium dental clinic website combining professional healthcare presentation with a modern patient experience.",
+  status: "Live Template",
+  previewUrl: "https://meridian-dental-clinic.desiglo.com",
+  image: meridianDentalHero,
+},
+{
+  title: "Sanam Café",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A distinctive café website built around atmosphere, brand identity, menu discovery, and customer experience.",
+  status: "Live Template",
+  previewUrl: "https://sanam-cafe.desiglo.com",
+  image: sanamCafeHero,
+},
+{
+  title: "Ollca Café",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A modern café website featuring a refined visual identity, menu presentation, and responsive experience.",
+  status: "Live Template",
+  previewUrl: "https://ollca-cafe.desiglo.com",
+  image: ollcaCafeHero,
+},
+{
+  title: "The Space Café",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A contemporary café website focused on atmosphere, visual storytelling, menu discovery, and location information.",
+  status: "Live Template",
+  previewUrl: "https://the-space-cafe.desiglo.com",
+  image: theSpaceCafeHero,
+},
+{
+  title: "Mood Najdi Café",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A culturally inspired café website combining Najdi character with a polished modern digital experience.",
+  status: "Live Template",
+  previewUrl: "https://mood-najdi-cafe.desiglo.com",
+  image: moodNajdiCafeHero,
+},
+{
+  title: "Native Creative",
+  category: "Creative Agency",
+  services: "Design & Development",
+  description:
+    "A modern creative agency website built around strong visual presentation, services, and brand storytelling.",
+  status: "Live Template",
+  previewUrl: "https://native-creative.desiglo.com",
+  image: nativeCreativeHero,
+},
+{
+  title: "Wem Coffee",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A polished coffee brand website with an atmospheric visual direction and responsive customer experience.",
+  status: "Live Template",
+  previewUrl: "https://wem-coffee.desiglo.com",
+  image: wemCoffeeHero,
+},
+{
+  title: "Medad Café",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A refined café website designed around brand atmosphere, menu presentation, and an engaging customer experience.",
+  status: "Live Template",
+  previewUrl: "https://medad-cafe.desiglo.com",
+  image: medadCafeHero,
 },
 ];
 
@@ -142,7 +252,7 @@ export default function Work() {
       {/* Projects */}
       <section className="pb-24 sm:pb-28">
         <Container>
-          <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
+         <div className="grid gap-x-8 gap-y-14v lg:grid-cols-3">
             {projects.map((project, index) => (
               <article key={project.title} className="group">
                 {/* Preview */}

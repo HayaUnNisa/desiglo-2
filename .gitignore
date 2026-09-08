@@ -12,9 +12,16 @@ dist/
 dist-ssr/
 
 
-# Environment variables
+# Environment variables / Secrets
 .env
+.env.local
+.env.production
+.env.development
+.env.test
+.env.*.local
 .env.*
+
+# Allow an example environment file
 !.env.example
 
 
@@ -37,6 +44,10 @@ vite.config.js
 vite.config.d.ts
 
 
+# Vercel
+.vercel/
+
+
 # Cache / temporary files
 .cache/
 *.tmp
@@ -51,3 +62,4 @@ vite.config.d.ts
 # Operating system files
 .DS_Store
 Thumbs.db
+.vercel

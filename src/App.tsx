@@ -14,6 +14,9 @@ import StartProject from "./pages/StartProject";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 
+import Pay from "./pages/Pay";
+import PaymentRequest from "./pages/PaymentRequest";
+
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import Terms from "./pages/legal/Terms";
 import CookiePolicy from "./pages/legal/CookiePolicy";
@@ -32,7 +35,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/process" element={<Process />} />
           <Route path="/pricing" element={<Pricing />} />
-          
+
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
 
@@ -41,6 +44,15 @@ export default function App() {
             element={<StartProject />}
           />
 
+          {/* Payment routes */}
+          <Route path="/pay" element={<Pay />} />
+
+          <Route
+            path="/pay/:transactionNumber"
+            element={<PaymentRequest />}
+          />
+
+          {/* Legal */}
           <Route
             path="/privacy-policy"
             element={<PrivacyPolicy />}

@@ -8,7 +8,9 @@ export const config = {
   },
 };
 
-async function readRawBody(req: VercelRequest): Promise<Buffer> {
+async function readRawBody(
+  req: VercelRequest,
+): Promise<Buffer> {
   const chunks: Buffer[] = [];
 
   for await (const chunk of req) {
@@ -22,11 +24,17 @@ async function readRawBody(req: VercelRequest): Promise<Buffer> {
   return Buffer.concat(chunks);
 }
 
-function safeCompare(a: string, b: string) {
+function safeCompare(
+  a: string,
+  b: string,
+) {
   const aBuffer = Buffer.from(a);
   const bBuffer = Buffer.from(b);
 
-  if (aBuffer.length !== bBuffer.length) {
+  if (
+    aBuffer.length !==
+    bBuffer.length
+  ) {
     return false;
   }
 
@@ -54,7 +62,8 @@ export default async function handler(
       process.env.SUPABASE_SECRET_KEY;
 
     const webhookSecret =
-      process.env.SAFEPAY_WEBHOOK_SECRET;
+      process.env
+        .SAFEPAY_WEBHOOK_SECRET;
 
     if (
       !supabaseUrl ||
@@ -66,21 +75,24 @@ export default async function handler(
       );
 
       return res.status(500).json({
-        error: "Server configuration error",
+        error:
+          "Server configuration error",
       });
     }
 
     /*
-      IMPORTANT:
-      Safepay webhook verification must use
-      the original raw request body.
+      SafePay requires signature
+      verification against the
+      original raw request body.
     */
 
     const rawBody =
       await readRawBody(req);
 
     const signatureHeader =
-      req.headers["x-sfpy-signature"];
+      req.headers[
+        "x-sfpy-signature"
+      ];
 
     if (
       !signatureHeader ||
@@ -91,75 +103,44 @@ export default async function handler(
       );
 
       return res.status(400).json({
-        error: "Missing webhook signature",
+        error:
+          "Missing webhook signature",
       });
     }
 
     /*
-      Current Safepay webhook systems may also
-      provide X-SFPY-TIMESTAMP.
+      SafePay docs specify:
 
-      If present, verify:
-      timestamp + "." + raw body
-
-      Otherwise fall back to raw body verification
-      for the legacy checkout webhook format.
+      HMAC-SHA512(
+        raw webhook payload,
+        webhook shared secret
+      )
     */
 
-    const timestampHeader =
-      req.headers["x-sfpy-timestamp"];
-
-    let signingPayload: Buffer;
-
-    if (
-      timestampHeader &&
-      !Array.isArray(timestampHeader)
-    ) {
-      signingPayload = Buffer.concat([
-        Buffer.from(
-          `${timestampHeader}.`,
-          "utf8",
-        ),
-        rawBody,
-      ]);
-    } else {
-      signingPayload = rawBody;
-    }
-
-    /*
-      Safepay endpoint secrets may be provided
-      as hexadecimal/plain secrets depending
-      on the webhook system.
-
-      Start with the dashboard secret exactly
-      as supplied.
-    */
-
-    const expectedHex =
+    const expectedSignature =
       crypto
         .createHmac(
-          "sha256",
+          "sha512",
           webhookSecret,
         )
-        .update(signingPayload)
+        .update(rawBody)
         .digest("hex");
-
-    const expectedWithPrefix =
-      `sha256=${expectedHex}`;
 
     const signatureValid =
       safeCompare(
         signatureHeader,
-        expectedHex,
-      ) ||
-      safeCompare(
-        signatureHeader,
-        expectedWithPrefix,
+        expectedSignature,
       );
 
     if (!signatureValid) {
       console.error(
         "Invalid Safepay webhook signature",
+        {
+          signatureLength:
+            signatureHeader.length,
+          expectedLength:
+            expectedSignature.length,
+        },
       );
 
       return res.status(400).json({
@@ -168,73 +149,64 @@ export default async function handler(
       });
     }
 
-    const event =
-      JSON.parse(rawBody.toString("utf8"));
-
     /*
-      Safepay has used more than one webhook
-      payload format over time, so normalize
-      both common structures.
+      Signature is valid.
+      Now parse the webhook.
     */
 
-    const eventType =
-      event?.type ??
-      event?.event_type ??
-      null;
+    const event =
+      JSON.parse(
+        rawBody.toString("utf8"),
+      );
 
-    const notification =
-      event?.data?.notification ??
-      event?.notification ??
-      event?.data ??
-      null;
+    const eventType =
+      event?.type ?? null;
+
+    const data =
+      event?.data ?? null;
 
     const tracker =
-      notification?.tracker ??
-      event?.tracker ??
-      null;
+      data?.tracker ?? null;
 
     const paymentState =
-      notification?.state ??
-      event?.state ??
-      null;
+      data?.state ?? null;
 
     console.log(
       "Safepay webhook verified",
       {
         eventType,
         paymentState,
-        trackerPresent: Boolean(tracker),
+        trackerPresent:
+          Boolean(tracker),
       },
     );
+
+    /*
+      Ignore webhook events
+      without a tracker.
+    */
 
     if (!tracker) {
       return res.status(200).json({
         received: true,
         ignored: true,
+        reason:
+          "No tracker found",
       });
     }
 
     /*
-      Only consider successful payment events.
+      SafePay 2.0.0 success event.
     */
 
-    const successfulEvent =
-      eventType === "payment.succeeded" ||
-      eventType === "payment.completed" ||
-      eventType === "payment:created";
-
-    const successfulState =
-      paymentState === "PAID" ||
-      paymentState === "COMPLETED" ||
-      paymentState === "CAPTURED";
-
     if (
-      !successfulEvent &&
-      !successfulState
+      eventType !==
+      "payment.succeeded"
     ) {
       return res.status(200).json({
         received: true,
         ignored: true,
+        eventType,
       });
     }
 
@@ -245,8 +217,9 @@ export default async function handler(
       );
 
     /*
-      Find the Desiglo invoice using the
-      Safepay tracker we stored earlier.
+      Match SafePay tracker
+      with the payment request
+      created earlier.
     */
 
     const {
@@ -277,9 +250,20 @@ export default async function handler(
       });
     }
 
+    /*
+      A SafePay test webhook may
+      contain a fake tracker.
+
+      In that case acknowledge it
+      without failing.
+    */
+
     if (!paymentRequest) {
-      console.error(
+      console.log(
         "No payment request matches Safepay tracker",
+        {
+          tracker,
+        },
       );
 
       return res.status(200).json({
@@ -289,14 +273,13 @@ export default async function handler(
     }
 
     /*
-      Idempotency:
-      Safepay may retry webhooks.
-
-      If already paid, simply acknowledge.
+      SafePay can retry events.
+      Don't update twice.
     */
 
     if (
-      paymentRequest.status === "paid"
+      paymentRequest.status ===
+      "paid"
     ) {
       return res.status(200).json({
         received: true,
@@ -305,6 +288,7 @@ export default async function handler(
     }
 
     const {
+      data: updatedPayment,
       error: updateError,
     } = await supabase
       .from("payment_requests")
@@ -320,7 +304,9 @@ export default async function handler(
       .eq(
         "status",
         "unpaid",
-      );
+      )
+      .select("id, status, paid_at")
+      .maybeSingle();
 
     if (updateError) {
       console.error(
@@ -334,11 +320,24 @@ export default async function handler(
       });
     }
 
+    /*
+      If another webhook already
+      updated it between lookup
+      and update.
+    */
+
+    if (!updatedPayment) {
+      return res.status(200).json({
+        received: true,
+        alreadyProcessed: true,
+      });
+    }
+
     console.log(
       "Desiglo payment marked paid",
       {
         paymentRequestId:
-          paymentRequest.id,
+          updatedPayment.id,
       },
     );
 
@@ -353,7 +352,8 @@ export default async function handler(
     );
 
     return res.status(500).json({
-      error: "Webhook processing failed",
+      error:
+        "Webhook processing failed",
     });
   }
 }

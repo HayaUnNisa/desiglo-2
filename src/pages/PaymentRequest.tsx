@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {
   CheckCircle2,
   CreditCard,
+  Download,
   Loader2,
 } from "lucide-react";
 
@@ -54,7 +55,8 @@ export default function PaymentRequest() {
 
         if (!response.ok) {
           throw new Error(
-            data.error || "Unable to load payment request.",
+            data.error ||
+              "Unable to load payment request.",
           );
         }
 
@@ -154,7 +156,6 @@ export default function PaymentRequest() {
       <section className="min-h-[70vh] py-28">
         <Container>
           <div className="mx-auto max-w-xl rounded-3xl border border-white/[0.08] bg-[#0A2029] p-8 text-center">
-
             <h1 className="text-3xl font-bold text-white">
               Payment request not found
             </h1>
@@ -169,7 +170,6 @@ export default function PaymentRequest() {
             >
               Try Another Transaction
             </Button>
-
           </div>
         </Container>
       </section>
@@ -182,12 +182,10 @@ export default function PaymentRequest() {
       currency: payment.currency,
     }).format(payment.amount);
 
-  const isPaid =
-    payment.status === "paid";
+  const isPaid = payment.status === "paid";
 
   return (
     <section className="relative min-h-[70vh] overflow-hidden py-24 sm:py-28">
-
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[10%] top-10 h-72 w-72 rounded-full bg-[#168CFF]/8 blur-[120px]" />
 
@@ -196,11 +194,8 @@ export default function PaymentRequest() {
 
       <Container>
         <div className="relative mx-auto max-w-2xl">
-
           <div className="rounded-3xl border border-white/[0.08] bg-[#0A2029] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.4)] sm:p-9">
-
             <div className="flex items-start justify-between gap-6 border-b border-white/[0.07] pb-7">
-
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
                   Payment Request
@@ -212,17 +207,14 @@ export default function PaymentRequest() {
               </div>
 
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/8">
-
                 <CreditCard
                   size={21}
                   className="text-[#39BDF8]"
                 />
-
               </div>
             </div>
 
             <div className="grid gap-6 py-8 sm:grid-cols-2">
-
               <Detail
                 label="Client"
                 value={payment.customerName}
@@ -248,12 +240,10 @@ export default function PaymentRequest() {
                       : payment.status
                 }
               />
-
             </div>
 
             {payment.description && (
               <div className="border-t border-white/[0.07] py-7">
-
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#C9CED3]/45">
                   Description
                 </p>
@@ -261,12 +251,10 @@ export default function PaymentRequest() {
                 <p className="mt-3 text-sm leading-7 text-[#C9CED3]/75">
                   {payment.description}
                 </p>
-
               </div>
             )}
 
             <div className="border-t border-white/[0.07] pt-8">
-
               <p className="text-sm text-[#C9CED3]/55">
                 Amount Due
               </p>
@@ -280,13 +268,24 @@ export default function PaymentRequest() {
               </p>
 
               {isPaid ? (
-                <div className="mt-7 flex items-center gap-3 rounded-xl border border-emerald-400/20 bg-emerald-400/5 px-4 py-4 text-sm font-semibold text-emerald-300">
+                <>
+                  <div className="mt-7 flex items-center gap-3 rounded-xl border border-emerald-400/20 bg-emerald-400/5 px-4 py-4 text-sm font-semibold text-emerald-300">
+                    <CheckCircle2 size={19} />
 
-                  <CheckCircle2 size={19} />
+                    This payment has already been completed.
+                  </div>
 
-                  This payment has already been completed.
+                  <a
+                    href={`/api/transaction-report?transactionNumber=${encodeURIComponent(
+                      payment.transactionNumber,
+                    )}`}
+                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-4 text-sm font-semibold text-white transition hover:opacity-90"
+                  >
+                    <Download size={17} />
 
-                </div>
+                    Download Transaction Report
+                  </a>
+                </>
               ) : (
                 <>
                   <button
@@ -295,7 +294,6 @@ export default function PaymentRequest() {
                     onClick={startPayment}
                     className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-[#168CFF] px-5 py-4 text-sm font-semibold text-white transition hover:bg-[#2998FF] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-
                     {startingPayment ? (
                       <>
                         <Loader2
@@ -312,16 +310,13 @@ export default function PaymentRequest() {
                         Pay {formattedAmount} Securely
                       </>
                     )}
-
                   </button>
 
                   {paymentError && (
                     <div className="mt-4 rounded-xl border border-red-400/15 bg-red-400/5 px-4 py-3 text-center">
-
                       <p className="text-sm text-red-300">
                         {paymentError}
                       </p>
-
                     </div>
                   )}
                 </>
@@ -330,9 +325,7 @@ export default function PaymentRequest() {
               <p className="mt-5 text-center text-xs leading-6 text-[#C9CED3]/40">
                 Secure payment processing provided by Safepay.
               </p>
-
             </div>
-
           </div>
         </div>
       </Container>

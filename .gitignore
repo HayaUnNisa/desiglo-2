@@ -25,6 +25,10 @@ dist-ssr/
 !.env.example
 
 
+# Private payment files
+private/
+
+
 # Logs
 logs/
 *.log
@@ -62,4 +66,3 @@ vite.config.d.ts
 # Operating system files
 .DS_Store
 Thumbs.db
-.vercel

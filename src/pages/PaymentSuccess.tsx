@@ -16,8 +16,7 @@ type PaymentRequest = {
 export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
 
-  const transactionNumber =
-    searchParams.get("transactionNumber");
+  const transactionNumber = searchParams.get("order_id");
 
   const [payment, setPayment] =
     useState<PaymentRequest | null>(null);
@@ -57,11 +56,8 @@ export default function PaymentSuccess() {
         setPayment(request);
 
         /*
-         * The SafePay webhook is the authority.
-         * We do NOT mark the payment as paid from this page.
-         *
-         * If the webhook is still processing, check again
-         * for a short period.
+         * SafePay webhook remains the authority.
+         * This page only checks the current payment status.
          */
         if (
           request.status !== "paid" &&

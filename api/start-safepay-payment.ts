@@ -190,15 +190,10 @@ export default async function handler(
         order_id:
           paymentRequest.transaction_number,
 
-        redirect_url:
-          `${siteUrl}/payment/success?transactionNumber=${encodeURIComponent(
-            paymentRequest.transaction_number,
-          )}`,
+        redirect_url: `${siteUrl}/payment/success`,
 
-        cancel_url:
-          `${siteUrl}/payment/failed?transactionNumber=${encodeURIComponent(
-            paymentRequest.transaction_number,
-          )}`,
+        cancel_url: `${siteUrl}/payment/failed`,
+        
       });
 
     if (!checkoutUrl) {

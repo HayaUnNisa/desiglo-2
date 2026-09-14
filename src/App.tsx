@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 
 import Pay from "./pages/Pay";
 import PaymentRequest from "./pages/PaymentRequest";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentFailed from "./pages/PaymentFailed";
 
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
@@ -51,6 +52,11 @@ export default function App() {
           <Route
             path="/pay/:transactionNumber"
             element={<PaymentRequest />}
+          />
+
+          <Route
+            path="/payment/success"
+            element={<PaymentSuccess />}
           />
 
           <Route

@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
-import { Link, useSearchParams } from "react-router-dom";
+import {
+  CheckCircle2,
+  Download,
+  Loader2,
+} from "lucide-react";
+import {
+  Link,
+  useSearchParams,
+} from "react-router-dom";
 
 import Container from "../components/common/Container";
 
@@ -16,23 +23,31 @@ type PaymentRequest = {
 export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
 
-  const transactionNumber = searchParams.get("order_id");
+  const transactionNumber =
+    searchParams.get("order_id");
 
   const [payment, setPayment] =
     useState<PaymentRequest | null>(null);
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
 
   useEffect(() => {
     if (!transactionNumber) {
-      setError("Transaction number is missing.");
+      setError(
+        "Transaction number is missing.",
+      );
       setLoading(false);
       return;
     }
 
     let attempts = 0;
-    let timer: ReturnType<typeof setTimeout>;
+    let timer:
+      | ReturnType<typeof setTimeout>
+      | undefined;
 
     async function checkPayment() {
       try {
@@ -42,11 +57,13 @@ export default function PaymentSuccess() {
           )}`,
         );
 
-        const data = await response.json();
+        const data =
+          await response.json();
 
         if (!response.ok) {
           throw new Error(
-            data?.error || "Unable to verify payment.",
+            data?.error ||
+              "Unable to verify payment.",
           );
         }
 
@@ -65,7 +82,11 @@ export default function PaymentSuccess() {
         ) {
           attempts += 1;
 
-          timer = setTimeout(checkPayment, 2000);
+          timer = setTimeout(
+            checkPayment,
+            2000,
+          );
+
           return;
         }
 
@@ -84,7 +105,9 @@ export default function PaymentSuccess() {
     checkPayment();
 
     return () => {
-      clearTimeout(timer);
+      if (timer) {
+        clearTimeout(timer);
+      }
     };
   }, [transactionNumber]);
 
@@ -93,10 +116,13 @@ export default function PaymentSuccess() {
     currency: string,
   ) => {
     try {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency,
-      }).format(amount);
+      return new Intl.NumberFormat(
+        "en-US",
+        {
+          style: "currency",
+          currency,
+        },
+      ).format(amount);
     } catch {
       return `${amount} ${currency}`;
     }
@@ -116,7 +142,8 @@ export default function PaymentSuccess() {
                 </h1>
 
                 <p className="mt-3 text-sm leading-6 text-[#C9CED3]/60">
-                  Please wait while we verify your payment.
+                  Please wait while we
+                  verify your payment.
                 </p>
               </div>
             ) : error ? (
@@ -136,7 +163,8 @@ export default function PaymentSuccess() {
                   Go to Payments
                 </Link>
               </div>
-            ) : payment?.status === "paid" ? (
+            ) : payment?.status ===
+              "paid" ? (
               <>
                 <div className="text-center">
                   <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-500/10">
@@ -148,25 +176,32 @@ export default function PaymentSuccess() {
                   </h1>
 
                   <p className="mt-3 text-sm leading-6 text-[#C9CED3]/60">
-                    Thank you. Your payment has been
-                    received successfully.
+                    Thank you. Your payment
+                    has been received
+                    successfully.
                   </p>
                 </div>
 
                 <div className="mt-9 space-y-4 rounded-xl border border-white/[0.07] bg-black/10 p-5">
                   <Detail
                     label="Client"
-                    value={payment.customerName}
+                    value={
+                      payment.customerName
+                    }
                   />
 
                   <Detail
                     label="Service"
-                    value={payment.service}
+                    value={
+                      payment.service
+                    }
                   />
 
                   <Detail
                     label="Transaction"
-                    value={payment.transactionNumber}
+                    value={
+                      payment.transactionNumber
+                    }
                   />
 
                   <Detail
@@ -183,7 +218,17 @@ export default function PaymentSuccess() {
                   />
                 </div>
 
-                <div className="mt-8 text-center">
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <a
+                    href={`/api/transaction-report?transactionNumber=${encodeURIComponent(
+                      payment.transactionNumber,
+                    )}`}
+                    className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                  >
+                    <Download className="h-4 w-4" />
+                    Download Transaction Report
+                  </a>
+
                   <Link
                     to="/"
                     className="inline-flex rounded-lg bg-[#168CFF] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
@@ -199,8 +244,9 @@ export default function PaymentSuccess() {
                 </h1>
 
                 <p className="mt-3 text-sm leading-6 text-[#C9CED3]/60">
-                  Your payment has not been confirmed yet.
-                  Please refresh this page shortly.
+                  Your payment has not been
+                  confirmed yet. Please
+                  refresh this page shortly.
                 </p>
               </div>
             )}

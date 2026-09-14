@@ -123,10 +123,6 @@ export default async function handler(
     /*
       STEP 2:
       Create temporary Safepay authentication token.
-
-      IMPORTANT:
-      node-core exposes this as:
-      safepay.client.passport.create()
     */
 
     const passport =
@@ -200,7 +196,7 @@ export default async function handler(
           )}`,
 
         cancel_url:
-          `${siteUrl}/pay/${encodeURIComponent(
+          `${siteUrl}/payment/failed?transactionNumber=${encodeURIComponent(
             paymentRequest.transaction_number,
           )}`,
       });

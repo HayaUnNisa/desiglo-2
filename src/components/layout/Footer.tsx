@@ -48,6 +48,9 @@ const footerLinks = {
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
     { label: "Start a Project", href: "/start-a-project" },
+
+    // Client payment portal
+    { label: "Make a Payment", href: "/pay" },
   ],
 };
 

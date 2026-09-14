@@ -369,19 +369,6 @@ export default async function handler(
       );
     }
 
-    // Footer verification text
-    page.drawText(
-      "This transaction report confirms that the above payment was successfully received by Desiglo.",
-      {
-        x: 72,
-        y: 55,
-        size: 8,
-        font: regularFont,
-        color: muted,
-        maxWidth: 450,
-      },
-    );
-
     // --------------------------------------------------
     // Return PDF
     // --------------------------------------------------

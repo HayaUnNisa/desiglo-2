@@ -4,6 +4,7 @@ import ServicesSection from "../components/home/ServicesSection";
 import FeaturedWork from "../components/home/FeaturedWork";
 import ProcessSection from "../components/home/ProcessSection";
 import WhyDesiglo from "../components/home/WhyDesiglo";
+import ReviewsSection from "../components/home/ReviewsSection";
 import HomeCTA from "../components/home/HomeCTA";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <FeaturedWork />
       <ProcessSection />
       <WhyDesiglo />
+      <ReviewsSection />
       <HomeCTA />
     </>
   );

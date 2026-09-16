@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import StartProject from "./pages/StartProject";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
+import Review from "./pages/ReviewPage";
 
 import Pay from "./pages/Pay";
 import PaymentRequest from "./pages/PaymentRequest";
@@ -45,6 +46,9 @@ export default function App() {
             path="/start-a-project"
             element={<StartProject />}
           />
+
+          {/* Reviews */}
+          <Route path="/review" element={<Review />} />
 
           {/* Payment routes */}
           <Route path="/pay" element={<Pay />} />

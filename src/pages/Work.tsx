@@ -23,6 +23,10 @@ import moodNajdiCafeHero from "../assets/work/mood-najdi-cafe/hero.png";
 import nativeCreativeHero from "../assets/work/native-creative/hero.png";
 import wemCoffeeHero from "../assets/work/wem-coffee/hero.png";
 import medadCafeHero from "../assets/work/medad-cafe/hero.png";
+import noorAlDiyarHero from "../assets/work/noor-al-diyar/hero.png";
+import atelierFlameHero from "../assets/work/atelier-flame/hero.png";
+import cupCoffeeHero from "../assets/work/cup-coffee/hero.png";
+import mathalethHero from "../assets/work/mathaleth/hero.png";
 
 type Project = {
   title: string;
@@ -174,6 +178,46 @@ const projects: Project[] = [
   status: "Live Template",
   previewUrl: "https://medad-cafe.desiglo.com",
   image: medadCafeHero,
+},
+{
+  title: "Noor Al Diyar",
+  category: "Business Website",
+  services: "Design & Development",
+  description:
+    "A modern business website with a polished visual identity, clear service presentation, and a responsive experience across devices.",
+  status: "Live Template",
+  previewUrl: "https://noor-al-diyar.desiglo.com",
+  image: noorAlDiyarHero,
+},
+{
+  title: "Atelier Flame",
+  category: "Business Website",
+  services: "Design & Development",
+  description:
+    "A refined modern website focused on strong visual presentation, brand identity, and a smooth responsive customer experience.",
+  status: "Live Template",
+  previewUrl: "https://atelier-flame-omega.desiglo.com",
+  image: atelierFlameHero,
+},
+{
+  title: "Cup Coffee",
+  category: "Café & Restaurant",
+  services: "Design & Development",
+  description:
+    "A modern coffee shop website designed around brand atmosphere, menu discovery, and an engaging responsive customer experience.",
+  status: "Live Template",
+  previewUrl: "https://cup-coffee-lac.desiglo.com",
+  image: cupCoffeeHero,
+},
+{
+  title: "Mathaleth",
+  category: "Business Website",
+  services: "Design & Development",
+  description:
+    "A contemporary business website combining a distinctive visual identity with clear content presentation and responsive design.",
+  status: "Live Template",
+  previewUrl: "https://mathaleth.desiglo.com",
+  image: mathalethHero,
 },
 ];
 

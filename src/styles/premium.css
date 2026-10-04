@@ -1,0 +1,95 @@
+/* ===== Desiglo premium layer — loaded after index.css ===== */
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, #2f7bff14, transparent 60%),
+    var(--page);
+}
+::selection { background: #2f7bff55; color: #fff; }
+
+/* Buttons: subtle light sweep on primary */
+.dg-button { position: relative; overflow: hidden; border-radius: 12px; transition: background .3s, transform .3s, box-shadow .3s, border-color .3s; }
+.dg-button--primary::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-120%) skewX(-20deg);
+  background: linear-gradient(90deg, transparent, #ffffff40, transparent);
+  transition: transform .8s cubic-bezier(.22,1,.36,1);
+}
+.dg-button--primary:hover::after { transform: translateX(120%) skewX(-20deg); }
+.dg-button--secondary { background: var(--surface); border-color: var(--line); }
+.dg-button--secondary:hover { border-color: #2f7bff66; background: var(--surface-strong); }
+
+/* Cursor-follow spotlight cards */
+.spotlight { --x: 50%; --y: 50%; isolation: isolate; }
+.spotlight::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; opacity: 0;
+  background: radial-gradient(420px circle at var(--x) var(--y), #2f7bff22, transparent 60%);
+  transition: opacity .4s;
+}
+.spotlight::after {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; opacity: 0; pointer-events: none;
+  background: radial-gradient(300px circle at var(--x) var(--y), #5c98ffcc, transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  transition: opacity .4s;
+}
+.spotlight:hover::before, .spotlight:hover::after { opacity: 1; }
+
+/* Blueprint grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Infinite vertical project columns (hero wall) */
+@keyframes dg-col-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes dg-col-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+.dg-col-up { animation: dg-col-up 60s linear infinite; }
+.dg-col-down { animation: dg-col-down 70s linear infinite; }
+.dg-wall:hover .dg-col-up, .dg-wall:hover .dg-col-down { animation-play-state: paused; }
+
+/* Rotating border glow (featured pricing card) */
+@property --dg-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes dg-spin { to { --dg-angle: 360deg; } }
+.glow-border { position: relative; isolation: isolate; }
+.glow-border::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; z-index: -1;
+  background: conic-gradient(from var(--dg-angle), transparent 0 60%, #2f7bff, #c8d1df, transparent 85%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: dg-spin 5s linear infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent-hover) 0%, var(--accent) 40%, var(--grad-end) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Keep the old header styles from interfering */
+.site-header { display: contents; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-col-up, .dg-col-down, .glow-border::before { animation: none; }
+}
+@keyframes dg-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.dg-wall-mask {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent), linear-gradient(to right, transparent, #000 28%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent), linear-gradient(to right, transparent, #000 28%);
+  mask-composite: intersect;
+}
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Circular theme reveal (View Transitions API, Chrome/Edge/Safari 18) */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { z-index: 9999; }
+/* Fallback for browsers without view transitions: quick colour fade */
+html.theme-fade, html.theme-fade * { transition: background-color .45s ease, border-color .45s ease, color .45s ease !important; }

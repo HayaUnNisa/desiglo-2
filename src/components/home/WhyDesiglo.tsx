@@ -50,18 +50,18 @@ const features = [
 
 export default function WhyDesiglo() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#081C24] py-24 sm:py-28">
+    <section className="border-y border-[var(--ink)]/[0.06] bg-[var(--surface)] py-24 sm:py-28">
       <Container>
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
             Why Desiglo
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+          <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
             Built with purpose, not just pixels.
           </h2>
 
-          <p className="mt-5 text-lg leading-8 text-[#C9CED3]/70">
+          <p className="mt-5 text-lg leading-8 text-[var(--muted)]/70">
             A professional website should look good, work properly, communicate
             clearly, and remain useful as your business evolves.
           </p>
@@ -70,15 +70,15 @@ export default function WhyDesiglo() {
         <div className="mt-14 grid gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           {features.map(({ icon: Icon, title, description }) => (
             <div key={title}>
-              <div className="grid h-10 w-10 place-items-center rounded-lg border border-[#168CFF]/20 bg-[#168CFF]/8">
-                <Icon size={18} className="text-[#39BDF8]" />
+              <div className="grid h-10 w-10 place-items-center rounded-lg border border-[var(--accent)]/20 bg-[var(--accent)]/8">
+                <Icon size={18} className="text-[var(--accent)]" />
               </div>
 
-              <h3 className="mt-5 text-lg font-semibold text-white">
+              <h3 className="mt-5 text-lg font-semibold text-[var(--ink)]">
                 {title}
               </h3>
 
-              <p className="mt-2 text-sm leading-7 text-[#C9CED3]/65">
+              <p className="mt-2 text-sm leading-7 text-[var(--muted)]/65">
                 {description}
               </p>
             </div>

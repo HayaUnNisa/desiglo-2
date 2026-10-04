@@ -1,2 +1,40 @@
-import Container from "../components/common/Container";
-export default function Sitemap(){return <section className="py-24"><Container><h1 className="text-4xl font-bold">Sitemap</h1><p className="mt-4 text-[#C9CED3]">This page is scaffolded and ready for the full Desiglo content build.</p></Container></section>}
+import { Link } from "react-router-dom";
+export default function Sitemap() {
+  return (
+    <section className="dg-container section-pad">
+      <p className="eyebrow">FIND YOUR WAY</p>
+      <h1 className="my-6 text-5xl font-semibold">Sitemap</h1>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[
+          "Work",
+          "Services",
+          "Pricing",
+          "About",
+          "Process",
+          "FAQ",
+          "Contact",
+          "Start a project",
+          "Review",
+          "Pay",
+          "Privacy policy",
+          "Terms",
+          "Cookie policy",
+          "Accessibility",
+        ].map((n) => (
+          <Link
+            key={n}
+            className="text-link"
+            to={
+              "/" +
+              (n === "Start a project"
+                ? "start-a-project"
+                : n.toLowerCase().replaceAll(" ", "-"))
+            }
+          >
+            {n} ↗
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}

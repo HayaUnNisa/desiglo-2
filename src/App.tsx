@@ -1,99 +1,91 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import SiteLayout from "./components/layout/SiteLayout";
 
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 import Home from "./pages/Home";
-import Services from "./pages/Services";
-import Work from "./pages/Work";
-import About from "./pages/About";
-import Process from "./pages/Process";
-import Pricing from "./pages/Pricing";
-import FAQ from "./pages/FAQ";
-import Contact from "./pages/Contact";
-import StartProject from "./pages/StartProject";
-import Sitemap from "./pages/Sitemap";
-import NotFound from "./pages/NotFound";
-import Review from "./pages/ReviewPage";
+const Services = lazy(() => import("./pages/Services"));
+const Work = lazy(() => import("./pages/Work"));
+const About = lazy(() => import("./pages/About"));
+const Process = lazy(() => import("./pages/Process"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const Contact = lazy(() => import("./pages/Contact"));
+const StartProject = lazy(() => import("./pages/StartProject"));
+const Sitemap = lazy(() => import("./pages/Sitemap"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Review = lazy(() => import("./pages/ReviewPage"));
+const Reviews = lazy(() => import("./pages/Reviews"));
 
-import Pay from "./pages/Pay";
-import PaymentRequest from "./pages/PaymentRequest";
-import PaymentSuccess from "./pages/PaymentSuccess";
-import PaymentFailed from "./pages/PaymentFailed";
+const Pay = lazy(() => import("./pages/Pay"));
+const PaymentRequest = lazy(() => import("./pages/PaymentRequest"));
+const PaymentSuccess = lazy(() => import("./pages/PaymentSuccess"));
+const PaymentFailed = lazy(() => import("./pages/PaymentFailed"));
 
-import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
-import Terms from "./pages/legal/Terms";
-import CookiePolicy from "./pages/legal/CookiePolicy";
-import Accessibility from "./pages/legal/Accessibility";
+const PrivacyPolicy = lazy(() => import("./pages/legal/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/legal/Terms"));
+const CookiePolicy = lazy(() => import("./pages/legal/CookiePolicy"));
+const Accessibility = lazy(() => import("./pages/legal/Accessibility"));
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<SiteLayout />}>
-          <Route path="/" element={<Home />} />
+      <Suspense
+        fallback={
+          <div className="dg-container section-pad" role="status">
+            Loading page…
+          </div>
+        }
+      >
+        <Routes>
+          <Route element={<SiteLayout />}>
+            <Route path="/" element={<Home />} />
 
-          <Route path="/services" element={<Services />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/:slug" element={<ServiceDetail />} />
 
-          <Route path="/work" element={<Work />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/process" element={<Process />} />
-          <Route path="/pricing" element={<Pricing />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/process" element={<Process />} />
+            <Route path="/pricing" element={<Pricing />} />
 
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
 
-          <Route
-            path="/start-a-project"
-            element={<StartProject />}
-          />
+            <Route path="/start-a-project" element={<StartProject />} />
 
-          {/* Reviews */}
-          <Route path="/review" element={<Review />} />
+            {/* Reviews */}
+            <Route path="/review" element={<Review />} />
+            <Route path="/reviews" element={<Reviews />} />
 
-          {/* Payment routes */}
-          <Route path="/pay" element={<Pay />} />
+            {/* Payment routes */}
+            <Route path="/pay" element={<Pay />} />
 
-          <Route
-            path="/pay/:transactionNumber"
-            element={<PaymentRequest />}
-          />
+            <Route
+              path="/pay/:transactionNumber"
+              element={<PaymentRequest />}
+            />
 
-          <Route
-            path="/payment/success"
-            element={<PaymentSuccess />}
-          />
+            <Route path="/payment/success" element={<PaymentSuccess />} />
 
-          <Route
-            path="/payment/failed"
-            element={<PaymentFailed />}
-          />
+            <Route path="/payment/failed" element={<PaymentFailed />} />
 
-          {/* Legal */}
-          <Route
-            path="/privacy-policy"
-            element={<PrivacyPolicy />}
-          />
+            {/* Legal */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
-          <Route
-            path="/terms"
-            element={<Terms />}
-          />
+            <Route path="/terms" element={<Terms />} />
 
-          <Route
-            path="/cookie-policy"
-            element={<CookiePolicy />}
-          />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
 
-          <Route
-            path="/accessibility"
-            element={<Accessibility />}
-          />
+            <Route path="/accessibility" element={<Accessibility />} />
 
-          <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/sitemap" element={<Sitemap />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

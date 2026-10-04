@@ -177,22 +177,22 @@ export default function FAQ() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/[0.07] py-20 sm:py-24">
-        <div className="absolute left-[12%] top-0 h-72 w-72 rounded-full bg-[#168CFF]/8 blur-[120px]" />
+      <section className="relative overflow-hidden border-b border-[var(--ink)]/[0.07] py-20 sm:py-24">
+        <div className="absolute left-[12%] top-0 h-72 w-72 rounded-full bg-[var(--accent)]/8 blur-[120px]" />
 
         <Container>
           <div className="relative max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
               FAQ
             </p>
 
-            <h1 className="mt-4 text-5xl font-bold tracking-[-0.04em] text-white sm:text-6xl">
+            <h1 className="mt-4 text-5xl font-bold tracking-[-0.04em] text-[var(--ink)] sm:text-6xl">
               Questions before starting a project?
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#C9CED3]/75">
-              Find answers about Desiglo's services, pricing, process,
-              technical approach, and what happens after launch.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]/75">
+              Find answers about Desiglo's services, pricing, process, technical
+              approach, and what happens after launch.
             </p>
           </div>
         </Container>
@@ -208,12 +208,12 @@ export default function FAQ() {
                 className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-16"
               >
                 <div>
-                  <h2 className="text-2xl font-semibold tracking-tight text-white">
+                  <h2 className="text-2xl font-semibold tracking-tight text-[var(--ink)]">
                     {category.title}
                   </h2>
                 </div>
 
-                <div className="divide-y divide-white/[0.07] border-y border-white/[0.07]">
+                <div className="divide-y divide-white/[0.07] border-y border-[var(--ink)]/[0.07]">
                   {category.questions.map((item) => {
                     const id = `${category.title}-${item.question}`;
                     const isOpen = openQuestion === id;
@@ -223,25 +223,23 @@ export default function FAQ() {
                         <button
                           type="button"
                           aria-expanded={isOpen}
-                          onClick={() =>
-                            setOpenQuestion(isOpen ? null : id)
-                          }
+                          onClick={() => setOpenQuestion(isOpen ? null : id)}
                           className="flex w-full items-center justify-between gap-6 py-6 text-left"
                         >
-                          <span className="font-semibold text-white">
+                          <span className="font-semibold text-[var(--ink)]">
                             {item.question}
                           </span>
 
                           <ChevronDown
                             size={18}
-                            className={`shrink-0 text-[#39BDF8] transition-transform duration-200 ${
+                            className={`shrink-0 text-[var(--accent)] transition-transform duration-200 ${
                               isOpen ? "rotate-180" : ""
                             }`}
                           />
                         </button>
 
                         {isOpen && (
-                          <p className="max-w-3xl pb-6 text-sm leading-7 text-[#C9CED3]/70">
+                          <p className="max-w-3xl pb-6 text-sm leading-7 text-[var(--muted)]/70">
                             {item.answer}
                           </p>
                         )}
@@ -258,14 +256,14 @@ export default function FAQ() {
       {/* CTA */}
       <section className="pb-24 sm:pb-28">
         <Container>
-          <div className="rounded-3xl border border-[#168CFF]/20 bg-[#0A2029] px-6 py-14 sm:px-10 lg:px-14">
-            <h2 className="text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+          <div className="rounded-3xl border border-[var(--accent)]/20 bg-[var(--surface)] px-6 py-14 sm:px-10 lg:px-14">
+            <h2 className="text-3xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-4xl">
               Still have a question?
             </h2>
 
-            <p className="mt-4 max-w-2xl text-base leading-8 text-[#C9CED3]/70">
-              Contact Desiglo for a general question, or use the project form
-              if you already have a website project in mind.
+            <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--muted)]/70">
+              Contact Desiglo for a general question, or use the project form if
+              you already have a website project in mind.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">

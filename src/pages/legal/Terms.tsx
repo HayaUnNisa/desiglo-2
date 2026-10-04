@@ -197,11 +197,11 @@ export default function Terms() {
       description="These Terms govern use of the Desiglo website. Individual website projects are governed by separate project agreements."
       lastUpdated="August 15, 2026"
       notice={
-        <div className="rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/5 px-5 py-4 text-sm leading-7 text-[#C9CED3]/70">
-          <strong className="text-white">Important:</strong> These website
-          Terms do not replace the proposal, scope of work, service agreement,
-          payment terms, or other contract used for an individual client
-          project.
+        <div className="rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/5 px-5 py-4 text-sm leading-7 text-[var(--muted)]/70">
+          <strong className="text-[var(--ink)]">Important:</strong> These
+          website Terms do not replace the proposal, scope of work, service
+          agreement, payment terms, or other contract used for an individual
+          client project.
         </div>
       }
       sections={sections}

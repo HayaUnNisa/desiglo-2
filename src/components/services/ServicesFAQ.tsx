@@ -40,20 +40,20 @@ export default function ServicesFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="border-y border-white/[0.06] bg-[#081C24] py-24 sm:py-28">
+    <section className="border-y border-[var(--ink)]/[0.06] bg-[var(--surface)] py-24 sm:py-28">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
               FAQ
             </p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
               Questions about our services.
             </h2>
           </div>
 
-          <div className="divide-y divide-white/[0.07] border-y border-white/[0.07]">
+          <div className="divide-y divide-white/[0.07] border-y border-[var(--ink)]/[0.07]">
             {faqs.map((item, index) => {
               const isOpen = openIndex === index;
 
@@ -65,20 +65,20 @@ export default function ServicesFAQ() {
                     aria-expanded={isOpen}
                     className="flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
-                    <span className="font-semibold text-white">
+                    <span className="font-semibold text-[var(--ink)]">
                       {item.question}
                     </span>
 
                     <ChevronDown
                       size={18}
-                      className={`shrink-0 text-[#39BDF8] transition-transform duration-200 ${
+                      className={`shrink-0 text-[var(--accent)] transition-transform duration-200 ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     />
                   </button>
 
                   {isOpen && (
-                    <p className="max-w-2xl pb-6 text-sm leading-7 text-[#C9CED3]/70">
+                    <p className="max-w-2xl pb-6 text-sm leading-7 text-[var(--muted)]/70">
                       {item.answer}
                     </p>
                   )}

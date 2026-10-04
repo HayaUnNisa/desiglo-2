@@ -1,10 +1,5 @@
 import { FormEvent, useState } from "react";
-import {
-  CheckCircle2,
-  Loader2,
-  MessageSquareQuote,
-  Star,
-} from "lucide-react";
+import { CheckCircle2, Loader2, MessageSquareQuote, Star } from "lucide-react";
 
 import { supabase } from "../lib/supabase";
 
@@ -18,9 +13,7 @@ export default function Review() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setError("");
@@ -30,20 +23,24 @@ export default function Review() {
       return;
     }
 
+    if (!supabase) {
+      setError(
+        "Reviews are temporarily unavailable. Please use our contact page to get in touch.",
+      );
+      return;
+    }
     setSubmitting(true);
 
     try {
-      const { error: submitError } = await supabase
-        .from("reviews")
-        .insert({
-          name: name.trim(),
-          company: company.trim() || null,
-          rating,
-          comment: comment.trim(),
+      const { error: submitError } = await supabase.from("reviews").insert({
+        name: name.trim(),
+        company: company.trim() || null,
+        rating,
+        comment: comment.trim(),
 
-          // Every new review requires approval
-          status: "pending",
-        });
+        // Every new review requires approval
+        status: "pending",
+      });
 
       if (submitError) {
         throw submitError;
@@ -58,9 +55,7 @@ export default function Review() {
     } catch (err) {
       console.error(err);
 
-      setError(
-        "We couldn't submit your review. Please try again.",
-      );
+      setError("We couldn't submit your review. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -68,25 +63,23 @@ export default function Review() {
 
   if (success) {
     return (
-      <main className="min-h-screen bg-[#07161d] px-6 py-24 text-white">
+      <main className="min-h-screen bg-[var(--page)] px-6 py-24 text-[var(--ink)]">
         <div className="mx-auto flex max-w-xl flex-col items-center text-center">
           <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10">
             <CheckCircle2 className="h-8 w-8 text-emerald-400" />
           </div>
 
-          <h1 className="text-3xl font-bold">
-            Thank you for your review
-          </h1>
+          <h1 className="text-3xl font-bold">Thank you for your review</h1>
 
-          <p className="mt-4 text-slate-400">
-            Your feedback has been submitted and will appear
-            after it has been reviewed.
+          <p className="mt-4 text-[var(--muted)]">
+            Your feedback has been submitted and will appear after it has been
+            reviewed.
           </p>
 
           <button
             type="button"
             onClick={() => setSuccess(false)}
-            className="mt-8 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold transition hover:bg-white/5"
+            className="mt-8 rounded-xl border border-[var(--ink)]/10 px-5 py-3 text-sm font-semibold transition hover:bg-[var(--ink)]/5"
           >
             Leave another review
           </button>
@@ -96,7 +89,7 @@ export default function Review() {
   }
 
   return (
-    <main className="min-h-screen bg-[#07161d] px-6 py-20 text-white">
+    <main className="min-h-screen bg-[var(--page)] px-6 py-20 text-[var(--ink)]">
       <div className="mx-auto max-w-2xl">
         <div className="mb-10 text-center">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10">
@@ -107,22 +100,18 @@ export default function Review() {
             Share Your Experience
           </h1>
 
-          <p className="mx-auto mt-4 max-w-lg text-slate-400">
-            Worked with Desiglo? We'd love to hear about your
-            experience.
+          <p className="mx-auto mt-4 max-w-lg text-[var(--muted)]">
+            Worked with Desiglo? We'd love to hear about your experience.
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+          className="rounded-2xl border border-[var(--ink)]/10 bg-[var(--ink)]/[0.03] p-6 sm:p-8"
         >
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
-              <label
-                htmlFor="name"
-                className="mb-2 block text-sm font-medium"
-              >
+              <label htmlFor="name" className="mb-2 block text-sm font-medium">
                 Your Name *
               </label>
 
@@ -132,7 +121,7 @@ export default function Review() {
                 onChange={(e) => setName(e.target.value)}
                 maxLength={100}
                 required
-                className="w-full rounded-xl border border-white/10 bg-[#0a2029] px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500"
+                className="w-full rounded-xl border border-[var(--ink)]/10 bg-[var(--surface)] px-4 py-3 text-[var(--ink)] outline-none transition placeholder:text-slate-600 focus:border-blue-500"
                 placeholder="Your name"
               />
             </div>
@@ -150,16 +139,14 @@ export default function Review() {
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 maxLength={150}
-                className="w-full rounded-xl border border-white/10 bg-[#0a2029] px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500"
+                className="w-full rounded-xl border border-[var(--ink)]/10 bg-[var(--surface)] px-4 py-3 text-[var(--ink)] outline-none transition placeholder:text-slate-600 focus:border-blue-500"
                 placeholder="Optional"
               />
             </div>
           </div>
 
           <div className="mt-7">
-            <p className="mb-3 text-sm font-medium">
-              Your Rating *
-            </p>
+            <p className="mb-3 text-sm font-medium">Your Rating *</p>
 
             <div className="flex gap-2">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -183,10 +170,7 @@ export default function Review() {
           </div>
 
           <div className="mt-7">
-            <label
-              htmlFor="comment"
-              className="mb-2 block text-sm font-medium"
-            >
+            <label htmlFor="comment" className="mb-2 block text-sm font-medium">
               Your Review *
             </label>
 
@@ -197,7 +181,7 @@ export default function Review() {
               maxLength={1000}
               required
               rows={6}
-              className="w-full resize-none rounded-xl border border-white/10 bg-[#0a2029] px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500"
+              className="w-full resize-none rounded-xl border border-[var(--ink)]/10 bg-[var(--surface)] px-4 py-3 text-[var(--ink)] outline-none transition placeholder:text-slate-600 focus:border-blue-500"
               placeholder="Tell us about your experience working with Desiglo..."
             />
 
@@ -215,7 +199,7 @@ export default function Review() {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3.5 font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3.5 font-semibold text-[var(--ink)] transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {submitting ? (
               <>

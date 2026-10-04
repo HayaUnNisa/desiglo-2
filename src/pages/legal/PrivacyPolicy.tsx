@@ -191,11 +191,11 @@ export default function PrivacyPolicy() {
       description="This policy explains how personal information may be handled when you visit Desiglo, contact us, or submit information about a website project."
       lastUpdated="August 15, 2026"
       notice={
-        <div className="rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/5 px-5 py-4 text-sm leading-7 text-[#C9CED3]/70">
+        <div className="rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/5 px-5 py-4 text-sm leading-7 text-[var(--muted)]/70">
           For information about cookies and browser storage, see the{" "}
           <Link
             to="/cookie-policy"
-            className="font-medium text-[#9FDCFF] hover:text-white"
+            className="font-medium text-[var(--accent)] hover:text-[var(--ink)]"
           >
             Cookie Policy
           </Link>

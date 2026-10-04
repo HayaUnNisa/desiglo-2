@@ -15,110 +15,154 @@ type Review = {
 
 export default function ReviewsSection() {
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [totalReviews, setTotalReviews] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadReviews = async () => {
-      const { data, error } = await supabase
-        .from("reviews")
-        .select(
-          "id, name, company, rating, comment, created_at",
-        )
-        .eq("status", "approved")
-        .order("created_at", {
-          ascending: false,
-        })
-        .limit(6);
+    let cancelled = false;
 
-      if (error) {
-        console.error(
-          "Failed to load reviews:",
-          error,
-        );
-      } else {
-        setReviews(data ?? []);
+    async function loadReviews() {
+      try {
+        if (!supabase) return;
+
+        const { data, error, count } = await supabase
+          .from("reviews")
+          .select(
+            "id, name, company, rating, comment, created_at",
+            { count: "exact" },
+          )
+          .eq("status", "approved")
+          .order("created_at", { ascending: false })
+          .order("id", { ascending: false })
+          .limit(3);
+
+        if (error) throw error;
+
+        if (!cancelled) {
+          setReviews(data ?? []);
+          setTotalReviews(count ?? data?.length ?? 0);
+        }
+      } catch (error) {
+        console.error("Failed to load reviews:", error);
+      } finally {
+        if (!cancelled) setLoading(false);
       }
+    }
 
-      setLoading(false);
+    void loadReviews();
+
+    return () => {
+      cancelled = true;
     };
-
-    loadReviews();
   }, []);
 
-  // Don't show an empty section
-  if (!loading && reviews.length === 0) {
-    return null;
-  }
+  if (!loading && reviews.length === 0) return null;
+
+  const additionalReviews = Math.max(
+    totalReviews - reviews.length,
+    0,
+  );
 
   return (
-    <section className="bg-[#07161d] px-6 py-24">
+    <section
+      className="bg-[var(--page)] px-6 py-24"
+      aria-labelledby="reviews-heading"
+      aria-busy={loading}
+    >
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
-              <MessageSquareQuote className="h-6 w-6 text-blue-400" />
+              <MessageSquareQuote
+                className="h-6 w-6 text-[var(--accent)]"
+                aria-hidden="true"
+              />
             </div>
 
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            <h2
+              id="reviews-heading"
+              className="text-3xl font-bold text-[var(--ink)] sm:text-4xl"
+            >
               What Our Clients Say
             </h2>
 
-            <p className="mt-3 max-w-xl text-slate-400">
+            <p className="mt-3 max-w-xl text-[var(--muted)]">
               Feedback from clients who have worked with Desiglo.
             </p>
+
+            {!loading && additionalReviews > 0 && (
+  <Link
+    to="/reviews"
+    className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3.5 py-2 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+  >
+    View all {totalReviews} reviews
+    <span aria-hidden="true">→</span>
+  </Link>
+)}
           </div>
 
           <Link
             to="/review"
-            className="inline-flex w-fit items-center justify-center rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:border-blue-500/40 hover:bg-white/5"
+            className="inline-flex w-fit items-center justify-center rounded-xl border border-[var(--line)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold text-[var(--ink)] transition hover:border-[var(--accent)]"
           >
             Leave a Review
           </Link>
         </div>
 
         {loading ? (
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="h-64 animate-pulse rounded-2xl border border-white/10 bg-white/[0.03]"
-              />
-            ))}
-          </div>
+          <>
+            <p className="sr-only" role="status">
+              Loading reviews…
+            </p>
+
+            <div
+              className="grid gap-5 md:grid-cols-3"
+              aria-hidden="true"
+            >
+              {[1, 2, 3].map((item) => (
+                <div
+                  key={item}
+                  className="h-64 animate-pulse rounded-2xl border border-[var(--line)] bg-[var(--surface)]"
+                />
+              ))}
+            </div>
+          </>
         ) : (
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             {reviews.map((review) => (
               <article
                 key={review.id}
-                className="flex min-h-64 flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-blue-500/30"
+                className="flex min-h-64 flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 transition duration-300 hover:-translate-y-1 hover:border-[var(--accent)]"
               >
                 <div
                   className="mb-5 flex gap-1"
+                  role="img"
                   aria-label={`${review.rating} out of 5 stars`}
                 >
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
+                      aria-hidden="true"
                       className={`h-5 w-5 ${
                         star <= review.rating
                           ? "fill-amber-400 text-amber-400"
-                          : "text-slate-700"
+                          : "text-[var(--muted)]"
                       }`}
                     />
                   ))}
                 </div>
 
-                <p className="flex-1 leading-7 text-slate-300">
+                <blockquote className="m-0 flex-1 whitespace-pre-line break-words leading-7 text-[var(--ink)]">
                   “{review.comment}”
-                </p>
+                </blockquote>
 
-                <div className="mt-7 border-t border-white/10 pt-5">
-                  <p className="font-semibold text-white">
+                <div className="mt-7 border-t border-[var(--line)] pt-5">
+                  <p className="font-semibold text-[var(--ink)]">
                     {review.name}
                   </p>
 
                   {review.company && (
-                    <p className="mt-1 text-sm text-slate-500">
+                    <p className="mt-1 text-sm text-[var(--muted)]">
                       {review.company}
                     </p>
                   )}

@@ -12,7 +12,7 @@ export default function PricingGrid() {
           ))}
         </div>
 
-        <p className="mt-8 max-w-3xl text-sm leading-7 text-[#C9CED3]/55">
+        <p className="mt-8 max-w-3xl text-sm leading-7 text-[var(--muted)]/55">
           These ranges are starting estimates. Final pricing depends on page
           count, features, design complexity, integrations, content
           requirements, and project scope.

@@ -61,15 +61,15 @@ export default function ServicesSection() {
     <section className="py-24 sm:py-28">
       <Container>
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
             Services
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+          <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
             Everything your website needs.
           </h2>
 
-          <p className="mt-5 text-lg leading-8 text-[#C9CED3]/75">
+          <p className="mt-5 text-lg leading-8 text-[var(--muted)]/75">
             From initial design through development and long-term support,
             Desiglo handles the work required to create a professional modern
             website.
@@ -81,30 +81,30 @@ export default function ServicesSection() {
             <Link
               key={title}
               to={href}
-              className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A2029]/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#168CFF]/35 hover:bg-[#0A2029]"
+              className="group relative overflow-hidden rounded-2xl border border-[var(--ink)]/[0.08] bg-[var(--surface)]/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/35 hover:bg-[var(--surface)]"
             >
-              <div className="absolute right-[-40px] top-[-40px] h-32 w-32 rotate-45 rounded-3xl border border-[#168CFF]/0 transition-colors group-hover:border-[#168CFF]/10" />
+              <div className="absolute right-[-40px] top-[-40px] h-32 w-32 rotate-45 rounded-3xl border border-[var(--accent)]/0 transition-colors group-hover:border-[var(--accent)]/10" />
 
               <div className="flex items-start justify-between">
-                <div className="grid h-11 w-11 place-items-center rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/8 text-[#39BDF8]">
+                <div className="grid h-11 w-11 place-items-center rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/8 text-[var(--accent)]">
                   <Icon size={20} />
                 </div>
 
                 <ArrowUpRight
                   size={18}
-                  className="text-white/25 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#39BDF8]"
+                  className="text-[var(--ink)]/25 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
                 />
               </div>
 
-              <h3 className="mt-8 text-xl font-semibold tracking-tight text-white">
+              <h3 className="mt-8 text-xl font-semibold tracking-tight text-[var(--ink)]">
                 {title}
               </h3>
 
-              <p className="mt-3 text-sm leading-7 text-[#C9CED3]/70">
+              <p className="mt-3 text-sm leading-7 text-[var(--muted)]/70">
                 {description}
               </p>
 
-              <span className="mt-7 inline-flex items-center text-sm font-semibold text-[#9FDCFF]">
+              <span className="mt-7 inline-flex items-center text-sm font-semibold text-[var(--accent)]">
                 Explore service
               </span>
             </Link>

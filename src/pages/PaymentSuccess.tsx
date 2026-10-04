@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  CheckCircle2,
-  Download,
-  Loader2,
-} from "lucide-react";
-import {
-  Link,
-  useSearchParams,
-} from "react-router-dom";
+import { CheckCircle2, Download, Loader2 } from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
 
 import Container from "../components/common/Container";
 
@@ -23,31 +16,23 @@ type PaymentRequest = {
 export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
 
-  const transactionNumber =
-    searchParams.get("order_id");
+  const transactionNumber = searchParams.get("order_id");
 
-  const [payment, setPayment] =
-    useState<PaymentRequest | null>(null);
+  const [payment, setPayment] = useState<PaymentRequest | null>(null);
 
-  const [loading, setLoading] =
-    useState(true);
+  const [loading, setLoading] = useState(true);
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!transactionNumber) {
-      setError(
-        "Transaction number is missing.",
-      );
+      setError("Transaction number is missing.");
       setLoading(false);
       return;
     }
 
     let attempts = 0;
-    let timer:
-      | ReturnType<typeof setTimeout>
-      | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
 
     async function checkPayment() {
       try {
@@ -57,18 +42,13 @@ export default function PaymentSuccess() {
           )}`,
         );
 
-        const data =
-          await response.json();
+        const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(
-            data?.error ||
-              "Unable to verify payment.",
-          );
+          throw new Error(data?.error || "Unable to verify payment.");
         }
 
-        const request =
-          data.paymentRequest ?? data;
+        const request = data.paymentRequest ?? data;
 
         setPayment(request);
 
@@ -76,16 +56,10 @@ export default function PaymentSuccess() {
          * SafePay webhook remains the authority.
          * This page only checks the current payment status.
          */
-        if (
-          request.status !== "paid" &&
-          attempts < 10
-        ) {
+        if (request.status !== "paid" && attempts < 10) {
           attempts += 1;
 
-          timer = setTimeout(
-            checkPayment,
-            2000,
-          );
+          timer = setTimeout(checkPayment, 2000);
 
           return;
         }
@@ -93,9 +67,7 @@ export default function PaymentSuccess() {
         setLoading(false);
       } catch (err) {
         setError(
-          err instanceof Error
-            ? err.message
-            : "Unable to verify payment.",
+          err instanceof Error ? err.message : "Unable to verify payment.",
         );
 
         setLoading(false);
@@ -111,18 +83,12 @@ export default function PaymentSuccess() {
     };
   }, [transactionNumber]);
 
-  const formatAmount = (
-    amount: number,
-    currency: string,
-  ) => {
+  const formatAmount = (amount: number, currency: string) => {
     try {
-      return new Intl.NumberFormat(
-        "en-US",
-        {
-          style: "currency",
-          currency,
-        },
-      ).format(amount);
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency,
+      }).format(amount);
     } catch {
       return `${amount} ${currency}`;
     }
@@ -132,90 +98,66 @@ export default function PaymentSuccess() {
     <main className="min-h-[70vh] py-16 sm:py-24">
       <Container>
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 sm:p-10">
+          <div className="rounded-2xl border border-[var(--ink)]/[0.08] bg-[var(--ink)]/[0.025] p-6 sm:p-10">
             {loading ? (
               <div className="py-12 text-center">
-                <Loader2 className="mx-auto h-10 w-10 animate-spin text-[#168CFF]" />
+                <Loader2 className="mx-auto h-10 w-10 animate-spin text-[var(--accent)]" />
 
-                <h1 className="mt-6 text-2xl font-semibold text-white">
+                <h1 className="mt-6 text-2xl font-semibold text-[var(--ink)]">
                   Confirming your payment
                 </h1>
 
-                <p className="mt-3 text-sm leading-6 text-[#C9CED3]/60">
-                  Please wait while we
-                  verify your payment.
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]/60">
+                  Please wait while we verify your payment.
                 </p>
               </div>
             ) : error ? (
               <div className="py-10 text-center">
-                <h1 className="text-2xl font-semibold text-white">
+                <h1 className="text-2xl font-semibold text-[var(--ink)]">
                   Unable to verify payment
                 </h1>
 
-                <p className="mt-3 text-sm text-[#C9CED3]/60">
-                  {error}
-                </p>
+                <p className="mt-3 text-sm text-[var(--muted)]/60">{error}</p>
 
                 <Link
                   to="/pay"
-                  className="mt-7 inline-flex rounded-lg bg-[#168CFF] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                  className="mt-7 inline-flex rounded-lg bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-[var(--ink)] transition hover:opacity-90"
                 >
                   Go to Payments
                 </Link>
               </div>
-            ) : payment?.status ===
-              "paid" ? (
+            ) : payment?.status === "paid" ? (
               <>
                 <div className="text-center">
                   <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-500/10">
                     <CheckCircle2 className="h-9 w-9 text-emerald-400" />
                   </div>
 
-                  <h1 className="mt-6 text-3xl font-semibold text-white">
+                  <h1 className="mt-6 text-3xl font-semibold text-[var(--ink)]">
                     Payment Successful
                   </h1>
 
-                  <p className="mt-3 text-sm leading-6 text-[#C9CED3]/60">
-                    Thank you. Your payment
-                    has been received
-                    successfully.
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]/60">
+                    Thank you. Your payment has been received successfully.
                   </p>
                 </div>
 
-                <div className="mt-9 space-y-4 rounded-xl border border-white/[0.07] bg-black/10 p-5">
-                  <Detail
-                    label="Client"
-                    value={
-                      payment.customerName
-                    }
-                  />
+                <div className="mt-9 space-y-4 rounded-xl border border-[var(--ink)]/[0.07] bg-black/10 p-5">
+                  <Detail label="Client" value={payment.customerName} />
 
-                  <Detail
-                    label="Service"
-                    value={
-                      payment.service
-                    }
-                  />
+                  <Detail label="Service" value={payment.service} />
 
                   <Detail
                     label="Transaction"
-                    value={
-                      payment.transactionNumber
-                    }
+                    value={payment.transactionNumber}
                   />
 
                   <Detail
                     label="Amount Paid"
-                    value={formatAmount(
-                      payment.amount,
-                      payment.currency,
-                    )}
+                    value={formatAmount(payment.amount, payment.currency)}
                   />
 
-                  <Detail
-                    label="Status"
-                    value="Paid"
-                  />
+                  <Detail label="Status" value="Paid" />
                 </div>
 
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -223,7 +165,7 @@ export default function PaymentSuccess() {
                     href={`/api/transaction-report?transactionNumber=${encodeURIComponent(
                       payment.transactionNumber,
                     )}`}
-                    className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                    className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-[var(--ink)] transition hover:opacity-90"
                   >
                     <Download className="h-4 w-4" />
                     Download Transaction Report
@@ -231,7 +173,7 @@ export default function PaymentSuccess() {
 
                   <Link
                     to="/"
-                    className="inline-flex rounded-lg bg-[#168CFF] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                    className="inline-flex rounded-lg bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-[var(--ink)] transition hover:opacity-90"
                   >
                     Return Home
                   </Link>
@@ -239,14 +181,13 @@ export default function PaymentSuccess() {
               </>
             ) : (
               <div className="py-10 text-center">
-                <h1 className="text-2xl font-semibold text-white">
+                <h1 className="text-2xl font-semibold text-[var(--ink)]">
                   Payment is processing
                 </h1>
 
-                <p className="mt-3 text-sm leading-6 text-[#C9CED3]/60">
-                  Your payment has not been
-                  confirmed yet. Please
-                  refresh this page shortly.
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]/60">
+                  Your payment has not been confirmed yet. Please refresh this
+                  page shortly.
                 </p>
               </div>
             )}
@@ -257,22 +198,12 @@ export default function PaymentSuccess() {
   );
 }
 
-function Detail({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function Detail({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col gap-1 border-b border-white/[0.06] pb-4 last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
-      <span className="text-sm text-[#C9CED3]/50">
-        {label}
-      </span>
+    <div className="flex flex-col gap-1 border-b border-[var(--ink)]/[0.06] pb-4 last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
+      <span className="text-sm text-[var(--muted)]/50">{label}</span>
 
-      <span className="text-sm font-medium text-white">
-        {value}
-      </span>
+      <span className="text-sm font-medium text-[var(--ink)]">{value}</span>
     </div>
   );
 }

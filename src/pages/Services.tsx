@@ -195,23 +195,23 @@ export default function Services() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/[0.07] py-20 sm:py-24 lg:py-28">
+      <section className="relative overflow-hidden border-b border-[var(--ink)]/[0.07] py-20 sm:py-24 lg:py-28">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-[10%] top-0 h-72 w-72 rounded-full bg-[#168CFF]/8 blur-[120px]" />
-          <div className="absolute right-[10%] top-24 h-64 w-64 rounded-full bg-[#39BDF8]/5 blur-[120px]" />
+          <div className="absolute left-[10%] top-0 h-72 w-72 rounded-full bg-[var(--accent)]/8 blur-[120px]" />
+          <div className="absolute right-[10%] top-24 h-64 w-64 rounded-full bg-[var(--accent)]/5 blur-[120px]" />
         </div>
 
         <Container>
           <div className="relative max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
               Services
             </p>
 
-            <h1 className="mt-4 text-5xl font-bold leading-[1.05] tracking-[-0.04em] text-white sm:text-6xl">
+            <h1 className="mt-4 text-5xl font-bold leading-[1.05] tracking-[-0.04em] text-[var(--ink)] sm:text-6xl">
               Everything your website needs in one place.
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#C9CED3]/75">
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--muted)]/75">
               Desiglo handles design, development, redesigns, landing pages,
               e-commerce, business websites, and ongoing maintenance with one
               consistent approach.
@@ -235,15 +235,15 @@ export default function Services() {
       <section className="py-24 sm:py-28">
         <Container>
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
               What Desiglo Does
             </p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
               Services for every stage of your website.
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-[#C9CED3]/70">
+            <p className="mt-5 text-lg leading-8 text-[var(--muted)]/70">
               Whether you're starting from scratch, redesigning an existing
               website, or improving what you already have, Desiglo can help.
             </p>
@@ -254,21 +254,21 @@ export default function Services() {
               <Link
                 key={id}
                 to={`/services#${id}`}
-                className="group rounded-2xl border border-white/[0.08] bg-[#0A2029]/65 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#168CFF]/30 hover:bg-[#0A2029]"
+                className="group rounded-2xl border border-[var(--ink)]/[0.08] bg-[var(--surface)]/65 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/30 hover:bg-[var(--surface)]"
               >
-                <div className="grid h-11 w-11 place-items-center rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/8">
-                  <Icon size={20} className="text-[#39BDF8]" />
+                <div className="grid h-11 w-11 place-items-center rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/8">
+                  <Icon size={20} className="text-[var(--accent)]" />
                 </div>
 
-                <h3 className="mt-6 text-xl font-semibold text-white">
+                <h3 className="mt-6 text-xl font-semibold text-[var(--ink)]">
                   {title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-[#C9CED3]/65">
+                <p className="mt-3 text-sm leading-7 text-[var(--muted)]/65">
                   {description}
                 </p>
 
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#9FDCFF]">
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]">
                   View service
                   <ArrowRight
                     size={15}
@@ -282,7 +282,7 @@ export default function Services() {
       </section>
 
       {/* Detailed Services */}
-      <section className="border-y border-white/[0.06] bg-[#081C24]">
+      <section className="border-y border-[var(--ink)]/[0.06] bg-[var(--surface)]">
         <Container>
           {services.map(
             (
@@ -302,29 +302,31 @@ export default function Services() {
                 key={id}
                 className={`scroll-mt-28 grid gap-10 py-20 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20 ${
                   index !== services.length - 1
-                    ? "border-b border-white/[0.07]"
+                    ? "border-b border-[var(--ink)]/[0.07]"
                     : ""
                 }`}
               >
                 <div>
-                  <div className="grid h-12 w-12 place-items-center rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/8">
-                    <Icon size={21} className="text-[#39BDF8]" />
+                  <div className="grid h-12 w-12 place-items-center rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/8">
+                    <Icon size={21} className="text-[var(--accent)]" />
                   </div>
 
-                  <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  <h2 className="mt-5 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
                     {title}
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-[#C9CED3]/70">
+                  <p className="mt-4 text-base leading-8 text-[var(--muted)]/70">
                     {description}
                   </p>
 
-                  <div className="mt-6 rounded-xl border border-[#168CFF]/15 bg-[#168CFF]/5 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#39BDF8]">
+                  <div className="mt-6 rounded-xl border border-[var(--accent)]/15 bg-[var(--accent)]/5 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
                       Pricing
                     </p>
 
-                    <p className="mt-2 font-semibold text-white">{pricing}</p>
+                    <p className="mt-2 font-semibold text-[var(--ink)]">
+                      {pricing}
+                    </p>
                   </div>
 
                   <div className="mt-6">
@@ -336,7 +338,7 @@ export default function Services() {
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#39BDF8]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
                     What's Included
                   </p>
 
@@ -344,7 +346,7 @@ export default function Services() {
                     {included.map((item) => (
                       <div
                         key={item}
-                        className="rounded-xl border border-white/[0.07] bg-[#0A2029]/60 px-4 py-4 text-sm text-[#C9CED3]/70"
+                        className="rounded-xl border border-[var(--ink)]/[0.07] bg-[var(--surface)]/60 px-4 py-4 text-sm text-[var(--muted)]/70"
                       >
                         {item}
                       </div>
@@ -352,11 +354,11 @@ export default function Services() {
                   </div>
 
                   <div className="mt-7">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#39BDF8]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
                       Best For
                     </p>
 
-                    <p className="mt-3 max-w-2xl text-sm leading-7 text-[#C9CED3]/70">
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--muted)]/70">
                       {bestFor}
                     </p>
                   </div>
@@ -371,15 +373,15 @@ export default function Services() {
       <section className="py-24 sm:py-28">
         <Container>
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
               Every Project
             </p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
               The fundamentals stay consistent.
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-[#C9CED3]/70">
+            <p className="mt-5 text-lg leading-8 text-[var(--muted)]/70">
               No matter which service you choose, the same core standards guide
               the project.
             </p>
@@ -389,15 +391,17 @@ export default function Services() {
             {projectEssentials.map(({ icon: Icon, title, description }) => (
               <article
                 key={title}
-                className="rounded-2xl border border-white/[0.08] bg-[#0A2029]/65 p-6"
+                className="rounded-2xl border border-[var(--ink)]/[0.08] bg-[var(--surface)]/65 p-6"
               >
-                <div className="grid h-10 w-10 place-items-center rounded-lg border border-[#168CFF]/20 bg-[#168CFF]/8">
-                  <Icon size={18} className="text-[#39BDF8]" />
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-[var(--accent)]/20 bg-[var(--accent)]/8">
+                  <Icon size={18} className="text-[var(--accent)]" />
                 </div>
 
-                <h3 className="mt-5 font-semibold text-white">{title}</h3>
+                <h3 className="mt-5 font-semibold text-[var(--ink)]">
+                  {title}
+                </h3>
 
-                <p className="mt-2 text-sm leading-7 text-[#C9CED3]/65">
+                <p className="mt-2 text-sm leading-7 text-[var(--muted)]/65">
                   {description}
                 </p>
               </article>
@@ -407,19 +411,19 @@ export default function Services() {
       </section>
 
       {/* Process Preview */}
-      <section className="border-y border-white/[0.06] bg-[#081C24] py-24 sm:py-28">
+      <section className="border-y border-[var(--ink)]/[0.06] bg-[var(--surface)] py-24 sm:py-28">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
                 Process
               </p>
 
-              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
                 A clear path from idea to launch.
               </h2>
 
-              <p className="mt-5 max-w-md text-lg leading-8 text-[#C9CED3]/70">
+              <p className="mt-5 max-w-md text-lg leading-8 text-[var(--muted)]/70">
                 Projects move through a structured process so design,
                 development, feedback, and launch stay organized.
               </p>
@@ -443,7 +447,7 @@ export default function Services() {
               ].map((step) => (
                 <div
                   key={step}
-                  className="rounded-xl border border-white/[0.07] bg-[#0A2029]/60 px-5 py-4 text-sm font-medium text-[#C9CED3]/75"
+                  className="rounded-xl border border-[var(--ink)]/[0.07] bg-[var(--surface)]/60 px-5 py-4 text-sm font-medium text-[var(--muted)]/75"
                 >
                   {step}
                 </div>
@@ -458,15 +462,15 @@ export default function Services() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
                 Pricing
               </p>
 
-              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
                 Starting points for different project sizes.
               </h2>
 
-              <p className="mt-5 max-w-md text-lg leading-8 text-[#C9CED3]/70">
+              <p className="mt-5 max-w-md text-lg leading-8 text-[var(--muted)]/70">
                 Final pricing depends on the scope, number of pages, features,
                 integrations, design complexity, and technical requirements.
               </p>
@@ -483,8 +487,7 @@ export default function Services() {
                 {
                   name: "Basic",
                   price: "$200–$400",
-                  description:
-                    "A simple professional website or landing page.",
+                  description: "A simple professional website or landing page.",
                 },
                 {
                   name: "Standard",
@@ -507,17 +510,17 @@ export default function Services() {
               ].map((plan) => (
                 <div
                   key={plan.name}
-                  className="rounded-2xl border border-white/[0.08] bg-[#0A2029]/65 p-6"
+                  className="rounded-2xl border border-[var(--ink)]/[0.08] bg-[var(--surface)]/65 p-6"
                 >
-                  <p className="text-sm font-semibold text-[#39BDF8]">
+                  <p className="text-sm font-semibold text-[var(--accent)]">
                     {plan.name}
                   </p>
 
-                  <p className="mt-3 text-2xl font-bold text-white">
+                  <p className="mt-3 text-2xl font-bold text-[var(--ink)]">
                     {plan.price}
                   </p>
 
-                  <p className="mt-3 text-sm leading-6 text-[#C9CED3]/60">
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]/60">
                     {plan.description}
                   </p>
                 </div>
@@ -528,21 +531,21 @@ export default function Services() {
       </section>
 
       {/* Help Choosing */}
-      <section className="border-y border-white/[0.06] bg-[#081C24] py-20 sm:py-24">
+      <section className="border-y border-[var(--ink)]/[0.06] bg-[var(--surface)] py-20 sm:py-24">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
                 Not Sure Where to Start?
               </p>
 
-              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white">
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)]">
                 You don't need to choose the perfect service yourself.
               </h2>
             </div>
 
             <div>
-              <p className="text-base leading-8 text-[#C9CED3]/70">
+              <p className="text-base leading-8 text-[var(--muted)]/70">
                 Tell Desiglo about your business, current website, goals, and
                 required features. We can use that information to determine
                 which combination of services makes the most sense for your
@@ -567,25 +570,25 @@ export default function Services() {
       {/* CTA */}
       <section className="py-24 sm:py-28">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl border border-[#168CFF]/20 bg-[#0A2029] px-6 py-16 sm:px-10 lg:px-14">
+          <div className="relative overflow-hidden rounded-3xl border border-[var(--accent)]/20 bg-[var(--surface)] px-6 py-16 sm:px-10 lg:px-14">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0"
             >
-              <div className="absolute right-[-100px] top-[-130px] h-80 w-80 rounded-full bg-[#168CFF]/10 blur-[100px]" />
-              <div className="absolute right-16 top-10 h-36 w-36 rotate-45 rounded-3xl border border-white/[0.04]" />
+              <div className="absolute right-[-100px] top-[-130px] h-80 w-80 rounded-full bg-[var(--accent)]/10 blur-[100px]" />
+              <div className="absolute right-16 top-10 h-36 w-36 rotate-45 rounded-3xl border border-[var(--ink)]/[0.04]" />
             </div>
 
             <div className="relative max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-4xl font-bold tracking-[-0.04em] text-white sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.04em] text-[var(--ink)] sm:text-5xl">
                 Ready to build a stronger website?
               </h2>
 
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#C9CED3]/70">
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]/70">
                 Tell Desiglo what you're building, what you need, and what you
                 want your website to achieve.
               </p>

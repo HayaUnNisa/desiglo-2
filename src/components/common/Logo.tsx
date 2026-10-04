@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/logos/desiglo-logo.png";
+import logo from "../../assets/logos/desiglo-logo.webp";
 
 type LogoProps = {
   className?: string;
@@ -19,7 +19,7 @@ export default function Logo({ className = "" }: LogoProps) {
         className="h-10 w-auto object-contain sm:h-11"
       />
 
-      <span className="text-lg font-semibold tracking-[-0.02em] text-white sm:text-xl">
+      <span className="text-lg font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-xl">
         Desiglo
       </span>
     </Link>

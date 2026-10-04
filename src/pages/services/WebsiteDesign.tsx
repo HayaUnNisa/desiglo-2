@@ -1,2 +1,4 @@
-import Container from "../../components/common/Container";
-export default function WebsiteDesign(){return <section className="py-24"><Container><h1 className="text-4xl font-bold">Websit'e D'esign</h1><p className="mt-4 text-[#C9CED3]">Service page scaffold ready for full content.</p></Container></section>}
+import { Navigate } from "react-router-dom";
+export default function WebsiteDesign() {
+  return <Navigate to="/services/website-design" replace />;
+}

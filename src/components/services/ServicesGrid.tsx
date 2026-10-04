@@ -45,12 +45,7 @@ const services = [
       "Professional websites for businesses, consultants, agencies, and service providers.",
     href: "/services/business-websites",
     icon: BriefcaseBusiness,
-    features: [
-      "Service pages",
-      "Lead forms",
-      "About pages",
-      "SEO structure",
-    ],
+    features: ["Service pages", "Lead forms", "About pages", "SEO structure"],
   },
   {
     title: "Landing Pages",
@@ -58,12 +53,7 @@ const services = [
       "Focused pages for campaigns, services, launches, advertising, and lead generation.",
     href: "/services/landing-pages",
     icon: Megaphone,
-    features: [
-      "CTA strategy",
-      "Lead generation",
-      "Forms",
-      "Analytics-ready",
-    ],
+    features: ["CTA strategy", "Lead generation", "Forms", "Analytics-ready"],
   },
   {
     title: "E-commerce Development",
@@ -111,15 +101,15 @@ export default function ServicesGrid() {
     <section className="py-24 sm:py-28">
       <Container>
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#39BDF8]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
             What Desiglo Does
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-white sm:text-5xl">
+          <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
             Services for building a stronger website.
           </h2>
 
-          <p className="mt-5 text-lg leading-8 text-[#C9CED3]/70">
+          <p className="mt-5 text-lg leading-8 text-[var(--muted)]/70">
             Choose the service that best matches what you need, or combine
             several services into one complete project.
           </p>
@@ -131,26 +121,26 @@ export default function ServicesGrid() {
               <Link
                 key={title}
                 to={href}
-                className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A2029]/65 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#168CFF]/35 hover:bg-[#0A2029]"
+                className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-2xl border border-[var(--ink)]/[0.08] bg-[var(--surface)]/65 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/35 hover:bg-[var(--surface)]"
               >
-                <div className="absolute right-[-50px] top-[-50px] h-36 w-36 rotate-45 rounded-3xl border border-[#168CFF]/0 transition-colors group-hover:border-[#168CFF]/10" />
+                <div className="absolute right-[-50px] top-[-50px] h-36 w-36 rotate-45 rounded-3xl border border-[var(--accent)]/0 transition-colors group-hover:border-[var(--accent)]/10" />
 
                 <div className="flex items-start justify-between">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl border border-[#168CFF]/20 bg-[#168CFF]/8">
-                    <Icon size={20} className="text-[#39BDF8]" />
+                  <div className="grid h-11 w-11 place-items-center rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/8">
+                    <Icon size={20} className="text-[var(--accent)]" />
                   </div>
 
                   <ArrowUpRight
                     size={18}
-                    className="text-white/25 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#39BDF8]"
+                    className="text-[var(--ink)]/25 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
                   />
                 </div>
 
-                <h3 className="mt-7 text-xl font-semibold tracking-tight text-white">
+                <h3 className="mt-7 text-xl font-semibold tracking-tight text-[var(--ink)]">
                   {title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-[#C9CED3]/70">
+                <p className="mt-3 text-sm leading-7 text-[var(--muted)]/70">
                   {description}
                 </p>
 
@@ -158,14 +148,14 @@ export default function ServicesGrid() {
                   {features.map((feature) => (
                     <span
                       key={feature}
-                      className="rounded-full border border-white/[0.07] bg-white/[0.025] px-3 py-1.5 text-xs text-[#C9CED3]/65"
+                      className="rounded-full border border-[var(--ink)]/[0.07] bg-[var(--ink)]/[0.025] px-3 py-1.5 text-xs text-[var(--muted)]/65"
                     >
                       {feature}
                     </span>
                   ))}
                 </div>
 
-                <span className="mt-auto pt-7 text-sm font-semibold text-[#9FDCFF]">
+                <span className="mt-auto pt-7 text-sm font-semibold text-[var(--accent)]">
                   Explore service
                 </span>
               </Link>

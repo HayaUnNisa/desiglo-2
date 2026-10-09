@@ -46,7 +46,7 @@ const values = [
     icon: MessageSquareText,
     title: "Long-Term Thinking",
     description:
-      "Websites should be structured so they can evolve rather than becoming difficult to maintain.",
+      "Websites should be structured so they can evolve rather than becoming difficult to maintain..",
   },
 ];
 

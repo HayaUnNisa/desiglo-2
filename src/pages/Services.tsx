@@ -12,7 +12,6 @@ import {
   Wrench,
 } from "lucide-react";
 
-import { Link } from "react-router-dom";
 
 import Container from "../components/common/Container";
 import Button from "../components/common/Button";
@@ -21,174 +20,91 @@ const services = [
   {
     id: "website-design",
     icon: LayoutTemplate,
-    title: "Website Design",
-    description:
-      "Modern website design built around your brand, audience, content, and business goals.",
-    included: [
-      "Website strategy",
-      "UI design",
-      "UX structure",
-      "Wireframes",
-      "Responsive layouts",
-      "Typography systems",
-      "Color systems",
-      "Reusable components",
-      "Prototyping where useful",
-    ],
-    bestFor:
-      "Businesses that need a professional visual direction and a stronger website experience.",
-    pricing: "$200–$400 starting range",
-  },
-  {
-    id: "website-development",
-    icon: Code2,
-    title: "Website Development",
-    description:
-      "Responsive, maintainable websites built with modern front-end technologies and performance in mind.",
-    included: [
-      "Front-end development",
-      "Responsive implementation",
-      "Reusable components",
-      "CMS integration",
-      "API integration",
-      "Forms",
-      "Accessibility foundations",
-      "Performance optimization",
-      "Deployment preparation",
-    ],
-    bestFor:
-      "Projects that already have a design or need design and development handled together.",
-    pricing: "$500–$900 typical range",
-  },
-  {
-    id: "business-websites",
-    icon: BriefcaseBusiness,
-    title: "Business Websites",
-    description:
-      "Professional multi-page websites for companies, professionals, consultants, agencies, and service providers.",
-    included: [
-      "Homepage",
-      "Services sections",
-      "About page",
-      "Contact page",
-      "FAQ",
-      "Lead forms",
-      "Location information where needed",
-      "SEO-friendly structure",
-      "Responsive layouts",
-    ],
-    bestFor:
-      "Businesses that need a complete online presence rather than a single landing page.",
-    pricing: "$500–$900 typical range",
-  },
-  {
-    id: "landing-pages",
-    icon: Megaphone,
-    title: "Landing Pages",
-    description:
-      "Focused pages designed for campaigns, launches, lead generation, advertising, and service promotion.",
-    included: [
-      "Conversion-focused layout",
-      "CTA strategy",
-      "Lead capture forms",
-      "Responsive design",
-      "Analytics-ready structure",
-      "Campaign messaging support",
-      "Performance optimization",
-    ],
-    bestFor:
-      "Campaigns and offers that need a focused page built around one primary action.",
-    pricing: "$200–$400 starting range",
+    title: "Website Design & Development",
+    description: "Design and development for business websites and landing pages, shaped around your brand, audience, and goals.",
+    included: ["Website strategy and content structure","UI and UX design","Responsive development","Business websites and landing pages","Forms and calls to action","CMS or API integration where needed","Accessibility and performance foundations","Deployment preparation"],
+    bestFor: "Businesses that need a new website or a focused landing page, from initial design through development.",
+    pricing: "Custom quote",
   },
   {
     id: "ecommerce",
     icon: ShoppingBag,
     title: "E-commerce Development",
-    description:
-      "Professional online shopping experiences designed around products, customers, and clear purchase flows.",
-    included: [
-      "Store design",
-      "Product catalog",
-      "Product pages",
-      "Collections and categories",
-      "Search and filtering",
-      "Cart experience",
-      "Checkout integration",
-      "Responsive shopping",
-      "Product management setup",
-      "Performance optimization",
-    ],
-    bestFor:
-      "Businesses that need a custom online storefront with more advanced functionality.",
+    description: "Online stores built around your products, customers, and purchase journey.",
+    included: ["Store design","Product catalog and product pages","Collections and categories","Search and filtering","Cart experience","Checkout integration","Responsive shopping layouts","Product management setup"],
+    bestFor: "Businesses planning an online store or improving an existing shopping experience.",
+    pricing: "Custom quote",
+  },
+  {
+    id: "mobile-app-development",
+    icon: Smartphone,
+    title: "Mobile App Development",
+    description: "Mobile app design and development scoped around the features, platforms, and workflows your users need.",
+    included: ["Requirements and feature planning","App UI and UX design","User flows and prototypes","Development for agreed platforms","API integration where needed","Authentication where required","Device testing for agreed targets","Release preparation"],
+    bestFor: "Businesses that need a mobile experience for customers, teams, or a specific product idea.",
+    pricing: "Custom quote",
+  },
+  {
+    id: "seo",
+    icon: Search,
+    title: "SEO",
+    description: "Search engine optimization focused on making your website easier to discover, understand, and navigate.",
+    included: ["Website SEO review","Keyword and search intent research","Page titles and meta descriptions","Heading and content structure","Internal linking recommendations","Technical SEO improvements","Indexing and sitemap checks","Search performance reporting where configured"],
+    bestFor: "Businesses that want to improve their website’s search foundations and identify opportunities for organic visibility.",
+    pricing: "Custom quote",
+  },
+  {
+    id: "digital-marketing",
+    icon: Megaphone,
+    title: "Digital Marketing",
+    description: "Campaign planning and digital content aligned with your audience, channels, and business goals.",
+    included: ["Audience and goal planning","Channel strategy","Campaign messaging","Content planning","Social media creative direction","Landing page recommendations","Campaign setup for agreed channels","Reporting using available analytics"],
+    bestFor: "Businesses planning a launch, promoting a service, or building a more consistent digital presence.",
+    pricing: "Custom quote",
+  },
+  {
+    id: "logo-brand-identity",
+    icon: BriefcaseBusiness,
+    title: "Logo & Brand Identity Design",
+    description: "Logo and visual identity design to help your business present a clear, consistent look across digital touchpoints.",
+    included: ["Brand discovery and visual direction","Logo concepts","Refinement within the agreed scope","Color palette","Typography recommendations","Logo variations","Digital export files","Brand usage guidelines"],
+    bestFor: "New businesses building their identity and existing brands ready for a visual refresh.",
     pricing: "Custom quote",
   },
   {
     id: "website-redesign",
     icon: RefreshCw,
     title: "Website Redesign",
-    description:
-      "Improve an outdated website with stronger visuals, clearer navigation, better responsiveness, and improved performance.",
-    included: [
-      "Visual redesign",
-      "Navigation improvements",
-      "Mobile redesign",
-      "Brand consistency",
-      "Content hierarchy",
-      "Conversion path improvements",
-      "Performance improvements",
-      "Updated components",
-    ],
-    bestFor:
-      "Businesses with an existing website that no longer reflects the quality of the business.",
+    description: "Refresh an existing website with clearer navigation, updated visuals, and a better experience across screen sizes.",
+    included: ["Existing website review","Visual redesign","Navigation improvements","Responsive layout updates","Brand consistency","Content hierarchy","Conversion path improvements","Performance improvements within scope"],
+    bestFor: "Businesses whose existing website no longer reflects their brand, content, or needs.",
     pricing: "$500–$2,000 depending on scope",
   },
   {
     id: "maintenance",
     icon: Wrench,
-    title: "Website Maintenance",
-    description:
-      "Ongoing support for websites that need updates, fixes, improvements, and technical attention after launch.",
-    included: [
-      "Content updates",
-      "Bug fixes",
-      "Performance checks",
-      "Dependency updates",
-      "Technical improvements",
-      "Layout changes",
-      "New sections",
-      "Website monitoring where supported",
-    ],
-    bestFor:
-      "Businesses that want ongoing help maintaining and improving an existing website.",
+    title: "Website Maintenance & Support",
+    description: "Support for existing websites that need content updates, fixes, and ongoing technical improvements.",
+    included: ["Content updates","Bug fixes","Performance checks","Dependency updates","Technical improvements","Layout changes","New sections within scope","Website monitoring where supported"],
+    bestFor: "Businesses that need help maintaining and improving a website after launch.",
+    pricing: "Custom quote",
+  },
+  {
+    id: "custom-software",
+    icon: Code2,
+    title: "Custom Software Solutions",
+    description: "Software designed around specific business workflows, integrations, and operational requirements.",
+    included: ["Requirements and workflow discovery","Solution planning","Dashboard and interface design","Custom application development","API and system integrations","Data handling and user roles","Testing against agreed requirements","Deployment and handover planning"],
+    bestFor: "Businesses that need a tailored internal tool, portal, dashboard, or workflow application.",
     pricing: "Custom quote",
   },
 ];
 
 const projectEssentials = [
-  {
-    icon: Smartphone,
-    title: "Responsive by Default",
-    description:
-      "Every project is designed to work properly across phones, tablets, laptops, and desktops.",
-  },
-  {
-    icon: Gauge,
-    title: "Performance Focused",
-    description:
-      "Layouts, assets, and code are built with speed and efficiency in mind.",
-  },
-  {
-    icon: Search,
-    title: "SEO Foundations",
-    description:
-      "Clean structure, proper headings, and technical foundations support search visibility.",
-  },
-  {
-    icon: Code2,
-    title: "Maintainable Development",
-    description:
-      "Reusable components and organized structure make future changes easier.",
-  },
+  { icon: BriefcaseBusiness, title: "Clear Scope", description: "Goals, deliverables, and priorities are agreed around the needs of your project." },
+  { icon: LayoutTemplate, title: "Audience First", description: "Design, content, and functionality are shaped around the people who will use them." },
+  { icon: Gauge, title: "Quality in Context", description: "Reviews and checks match the work, from visual consistency to usability and technical performance." },
+  { icon: Wrench, title: "Practical Handover", description: "Final assets, documentation, and support needs are defined to suit the agreed deliverables." },
 ];
 
 export default function Services() {
@@ -208,13 +124,13 @@ export default function Services() {
             </p>
 
             <h1 className="mt-4 text-5xl font-bold leading-[1.05] tracking-[-0.04em] text-[var(--ink)] sm:text-6xl">
-              Everything your website needs in one place.
+              Digital services to build, grow, and support your business.
             </h1>
 
             <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--muted)]/75">
-              Desiglo handles design, development, redesigns, landing pages,
-              e-commerce, business websites, and ongoing maintenance with one
-              consistent approach.
+              Desiglo brings together websites, e-commerce, mobile apps, SEO,
+              digital marketing, brand identity, and custom software, with
+              redesign and support for existing websites.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -240,20 +156,21 @@ export default function Services() {
             </p>
 
             <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
-              Services for every stage of your website.
+              Services for every stage of your digital presence.
             </h2>
 
             <p className="mt-5 text-lg leading-8 text-[var(--muted)]/70">
-              Whether you're starting from scratch, redesigning an existing
-              website, or improving what you already have, Desiglo can help.
+              Whether you're launching a brand, building a digital product,
+              reaching your audience, or improving an existing website,
+              find a service that fits your next step.
             </p>
           </div>
 
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map(({ id, icon: Icon, title, description }) => (
-              <Link
+              <a
                 key={id}
-                to={`/services#${id}`}
+                href={`#${id}`}
                 className="group rounded-2xl border border-[var(--ink)]/[0.08] bg-[var(--surface)]/65 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/30 hover:bg-[var(--surface)]"
               >
                 <div className="grid h-11 w-11 place-items-center rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/8">
@@ -275,7 +192,7 @@ export default function Services() {
                     className="transition-transform group-hover:translate-x-1"
                   />
                 </span>
-              </Link>
+              </a>
             ))}
           </div>
         </Container>
@@ -339,7 +256,11 @@ export default function Services() {
 
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
-                    What's Included
+                    What the Project Can Include
+                  </p>
+
+                  <p className="mt-3 text-sm leading-7 text-[var(--muted)]/70">
+                    Deliverables are confirmed in your proposal based on the agreed scope.
                   </p>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -420,12 +341,12 @@ export default function Services() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
-                A clear path from idea to launch.
+                A clear path from idea to delivery.
               </h2>
 
               <p className="mt-5 max-w-md text-lg leading-8 text-[var(--muted)]/70">
-                Projects move through a structured process so design,
-                development, feedback, and launch stay organized.
+                Projects follow a process tailored to the service, keeping
+                planning, creation, feedback, and delivery organized.
               </p>
 
               <div className="mt-7">
@@ -439,11 +360,11 @@ export default function Services() {
               {[
                 "01 — Discovery",
                 "02 — Planning",
-                "03 — Design",
-                "04 — Development",
-                "05 — Testing",
-                "06 — Launch",
-                "07 — Support",
+                "03 — Strategy & Direction",
+                "04 — Creation & Implementation",
+                "05 — Review & Refinement",
+                "06 — Delivery or Launch",
+                "07 — Support Planning",
               ].map((step) => (
                 <div
                   key={step}
@@ -467,12 +388,14 @@ export default function Services() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold tracking-[-0.035em] text-[var(--ink)] sm:text-5xl">
-                Starting points for different project sizes.
+                Website ranges and custom service quotes.
               </h2>
 
               <p className="mt-5 max-w-md text-lg leading-8 text-[var(--muted)]/70">
-                Final pricing depends on the scope, number of pages, features,
-                integrations, design complexity, and technical requirements.
+                The website ranges below are starting points for website work.
+                Other services receive a custom quote based on deliverables,
+                complexity, integrations, and support needs. Final scope and
+                any third-party or advertising costs are agreed separately.
               </p>
 
               <div className="mt-7">
@@ -485,27 +408,27 @@ export default function Services() {
             <div className="grid gap-4 sm:grid-cols-2">
               {[
                 {
-                  name: "Basic",
+                  name: "Basic Website",
                   price: "$200–$400",
                   description: "A simple professional website or landing page.",
                 },
                 {
-                  name: "Standard",
+                  name: "Standard Website",
                   price: "$500–$900",
                   description:
                     "A more complete website for growing businesses.",
                 },
                 {
-                  name: "Premium",
+                  name: "Premium Website",
                   price: "$1,000–$2,000",
                   description:
-                    "Larger custom projects with more advanced requirements.",
+                    "Larger websites with more advanced requirements.",
                 },
                 {
-                  name: "Custom",
+                  name: "Other Digital Services",
                   price: "Custom Quote",
                   description:
-                    "E-commerce, integrations, or unique functionality.",
+                    "E-commerce, apps, SEO, marketing, branding, support, and custom software.",
                 },
               ].map((plan) => (
                 <div
@@ -546,8 +469,8 @@ export default function Services() {
 
             <div>
               <p className="text-base leading-8 text-[var(--muted)]/70">
-                Tell Desiglo about your business, current website, goals, and
-                required features. We can use that information to determine
+                Tell Desiglo about your business, current digital presence,
+                goals, and the deliverables you need. We can use that information to determine
                 which combination of services makes the most sense for your
                 project.
               </p>
@@ -585,12 +508,12 @@ export default function Services() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold tracking-[-0.04em] text-[var(--ink)] sm:text-5xl">
-                Ready to build a stronger website?
+                Ready to take your next digital step?
               </h2>
 
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]/70">
                 Tell Desiglo what you're building, what you need, and what you
-                want your website to achieve.
+                want your project to achieve.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
